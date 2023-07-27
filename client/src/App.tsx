@@ -8,6 +8,8 @@ import {BrowserRouter, Routes, Route} from "react-router-dom"
 import WeatherPage from './views/WeatherPage';
 import FavoritesPage from './views/FavoritesPage';
 
+export const API = "http://dataservice.accuweather.com"
+
 function App() {
   return (
     <BrowserRouter>
