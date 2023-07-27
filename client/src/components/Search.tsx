@@ -3,8 +3,10 @@ import { Autocomplete, Box, Container, Paper, TextField } from "@mui/material";
 import { fakeResTelAvivInfo, locationsRes } from "../util/fakeResponse";
 import axios from "axios";
 import { API } from "../App";
-import { useAppDispatch } from "../app/hooks";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { setWeather } from "../features/weather/weatherSlice";
+import { LocationType } from "../Types/types";
+import { setLocationSelector } from "../features/location/locationSlice";
 
 const Search = () => {
   const [locations, setLocations] = useState<LocationType[]>(locationsRes);
@@ -40,7 +42,7 @@ const Search = () => {
   };
 
   useEffect(() => {
-    dispatch(setWeather(fakeResTelAvivInfo));
+    dispatch(setWeather(fakeResTelAvivInfo[0]));
   }, []);
 
   // useEffect(() => {
@@ -67,6 +69,7 @@ const Search = () => {
                 onClick={(ev) => {
                   props.onClick!(ev);
                   setLocation(option.LocalizedName);
+                  dispatch(setLocationSelector(option))
                   setLocationKey(option.Key);
                 }}
               >
@@ -93,18 +96,3 @@ const Search = () => {
 
 export default Search;
 
-interface LocationType {
-  AdministrativeArea: {
-    ID: string;
-    LocalizedName: string;
-  };
-  Country: {
-    ID: string;
-    LocalizedName: string;
-  };
-  Key: string;
-  LocalizedName: string;
-  Rank: number;
-  Type: string;
-  Version: number;
-}

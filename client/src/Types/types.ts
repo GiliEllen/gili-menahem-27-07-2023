@@ -378,3 +378,20 @@ export interface WeatherType {
   MobileLink: "http://www.accuweather.com/en/il/tel-aviv/215854/current-weather/215854?lang=en-us";
   Link: "http://www.accuweather.com/en/il/tel-aviv/215854/current-weather/215854?lang=en-us";
 }
+
+export interface LocationType {
+    AdministrativeArea: {
+      ID: string;
+      LocalizedName: string;
+    };
+    Country: {
+      ID: string;
+      LocalizedName: string;
+    };
+    Key: string;
+    LocalizedName: string;
+    Rank: number;
+    Type: string;
+    Version: number;
+  }
+  

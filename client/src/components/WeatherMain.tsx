@@ -4,14 +4,16 @@ import { weatherSelector } from "../features/weather/weatherSlice";
 import { Box, Container, Paper, Stack, Typography } from "@mui/material";
 import { Player } from '@lottiefiles/react-lottie-player';
 import * as Sunny from "../assets/animations/sunny.json"
+import { locationSelector } from "../features/location/locationSlice";
 
 const WeatherMain = () => {
   const weather = useAppSelector(weatherSelector);
+  const location = useAppSelector(locationSelector)
 
   return (
     <Container>
       <Paper>
-        {weather ? (
+        {weather && location ? (
           <>
             <Stack direction={"row"} justifyContent={"space-between"}>
               <Stack direction={"row"}>
@@ -19,13 +21,15 @@ const WeatherMain = () => {
                     <Player style={{width: "100px"}} autoplay src={Sunny}></Player>
                 </Box>
                 <Box>
-                    <Typography>city</Typography>
-                    <Typography>temp</Typography>
+                    <Typography>{location.LocalizedName}</Typography>
+                    <Typography>{weather.Temperature.Metric.Value} {weather.Temperature.Metric.Unit}</Typography>
                 </Box>
               </Stack>
               <Box>Favorites</Box>
             </Stack>
-            <Box>Main Weather Text</Box>
+            <Stack direction={"row"} justifyContent={"center"}>
+                <Typography variant="h2">{weather.WeatherText}</Typography>
+            </Stack>
             <Stack direction={"row"} justifyContent={"space-evenly"}>
               Five Day forecast
             </Stack>

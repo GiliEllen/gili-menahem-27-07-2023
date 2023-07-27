@@ -13,7 +13,7 @@ const WeatherPage = () => {
       <Header/>
       <Search/>
       <WeatherMain/>
-      {weather ? <p> {JSON.stringify(weather)}</p> : null}
+      {/* {weather ? <p> {JSON.stringify(weather)}</p> : null} */}
     </div>
   )
 }
