@@ -9,6 +9,7 @@ import WeatherPage from './views/WeatherPage';
 import FavoritesPage from './views/FavoritesPage';
 
 export const API = "http://dataservice.accuweather.com"
+export const API_KEY= "3vMphpay81AU2hjh6QZXGlketl9M62WJ"
 
 function App() {
   return (

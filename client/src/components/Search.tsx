@@ -7,7 +7,7 @@ import { API } from "../App";
 const Search = () => {
   const [locations, setLocations] = useState<LocationType[]>(locationsRes);
   const [location, setLocation] = useState<string>("");
-  const [displayedLocation, setDisplayedLocation] = useState("");
+  const [locationKey, setLocationKey] = useState("");
 
   const search = async () => {
     try {
@@ -22,14 +22,26 @@ const Search = () => {
       console.error(error);
     }
   };
+  const searchWeather = async () => {
+    try {
+      const { data } = await axios.get(
+        `${API}/locations/v1/cities/currentconditions/v1/215854?apikey=%093vMphpay81AU2hjh6QZXGlketl9M62WJ`
+      );
+      console.log(data);
+        
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
     // console.log(locations);
+    // searchWeather()
   }, []);
 
-  //   useEffect(() => {
-  //     search();
-  //   }, [location]);
+    // useEffect(() => {
+    //   search();
+    // }, [location]);
 
   return (
     <Container sx={{ mt: 10 }}>
@@ -44,8 +56,6 @@ const Search = () => {
             return option.LocalizedName;
           }}
           renderOption={(props, option) => {
-            console.log("props");
-            console.log(props);
             return (
               <Box
                 component="li"
@@ -53,6 +63,7 @@ const Search = () => {
                 onClick={(ev) => {
                   props.onClick!(ev);
                   setLocation(option.LocalizedName);
+                  setLocationKey(option.Key)
                 }}
               >
                 {option.LocalizedName}
