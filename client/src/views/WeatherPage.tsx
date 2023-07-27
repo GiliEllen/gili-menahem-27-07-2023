@@ -1,8 +1,11 @@
 import React from 'react'
+import Header from '../components/Header'
 
 const WeatherPage = () => {
   return (
-    <div>WeatherPage</div>
+    <div>
+      <Header/>
+    </div>
   )
 }
 
