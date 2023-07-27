@@ -98,6 +98,7 @@ const Header = () => {
         >
           <MenuItem>{label}</MenuItem>
         </Link>
+        
       );
     });
   };
@@ -105,16 +106,29 @@ const Header = () => {
   const getMenuButtons = () => {
     return headersData.map(({ label, href }) => {
       return (
+        // <Button
+        //   {...{
+        //     key: label,
+        //     color: "inherit",
+        //     to: href,
+        //     component: RouterLink,
+        //     className : ({ isActive }:any) => {
+        //               return isActive ? "active" : "";
+        //             }
+        //   }}
+        // >
+        //   {label}
+        // </Button>
         <RouterLink
-          key={label}
-          to={href}
-          className={({ isActive }) => {
-            return isActive ? "active" : "";
-          }}
-        >
-          {label}
-        </RouterLink>
-      );
+        key={label}
+        to={href}
+        className={({ isActive }) => {
+          return isActive ? "active" : "";
+        }}
+      >
+        {label}
+      </RouterLink>
+      )
     });
   };
 
