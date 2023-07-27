@@ -5,6 +5,7 @@ import { Box, Container, Paper, Stack, Typography } from "@mui/material";
 import { Player } from '@lottiefiles/react-lottie-player';
 import * as Sunny from "../assets/animations/sunny.json"
 import { locationSelector } from "../features/location/locationSlice";
+import WeatherNext from "./WeatherNext";
 
 const WeatherMain = () => {
   const weather = useAppSelector(weatherSelector);
@@ -31,7 +32,7 @@ const WeatherMain = () => {
                 <Typography variant="h2">{weather.WeatherText}</Typography>
             </Stack>
             <Stack direction={"row"} justifyContent={"space-evenly"}>
-              Five Day forecast
+             <WeatherNext/>
             </Stack>
           </>
         ) : (

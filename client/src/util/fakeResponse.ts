@@ -786,3 +786,336 @@ export const fakeResTelAvivInfo = [
     Link: "http://www.accuweather.com/en/il/tel-aviv/215854/current-weather/215854?lang=en-us",
   },
 ];
+
+export const fakeResTelAvivInfoFiveMetric = {
+  Headline: {
+    EffectiveDate: "2023-07-27T14:00:00+03:00",
+    EffectiveEpochDate: 1690455600,
+    Severity: 4,
+    Text: "Danger of dehydration and heat stroke if outside for extended periods of time Thursday afternoon",
+    Category: "heat",
+    EndDate: "2023-07-27T20:00:00+03:00",
+    EndEpochDate: 1690477200,
+    MobileLink:
+      "http://www.accuweather.com/en/il/tel-aviv/215854/daily-weather-forecast/215854?unit=c&lang=en-us",
+    Link: "http://www.accuweather.com/en/il/tel-aviv/215854/daily-weather-forecast/215854?unit=c&lang=en-us",
+  },
+  DailyForecasts: [
+    {
+      Date: "2023-07-27T07:00:00+03:00",
+      EpochDate: 1690430400,
+      Temperature: {
+        Minimum: {
+          Value: 25.3,
+          Unit: "C",
+          UnitType: 17,
+        },
+        Maximum: {
+          Value: 38.1,
+          Unit: "C",
+          UnitType: 17,
+        },
+      },
+      Day: {
+        Icon: 2,
+        IconPhrase: "Mostly sunny",
+        HasPrecipitation: false,
+      },
+      Night: {
+        Icon: 33,
+        IconPhrase: "Clear",
+        HasPrecipitation: false,
+      },
+      Sources: ["AccuWeather"],
+      MobileLink:
+        "http://www.accuweather.com/en/il/tel-aviv/215854/daily-weather-forecast/215854?day=1&unit=c&lang=en-us",
+      Link: "http://www.accuweather.com/en/il/tel-aviv/215854/daily-weather-forecast/215854?day=1&unit=c&lang=en-us",
+    },
+    {
+      Date: "2023-07-28T07:00:00+03:00",
+      EpochDate: 1690516800,
+      Temperature: {
+        Minimum: {
+          Value: 26.8,
+          Unit: "C",
+          UnitType: 17,
+        },
+        Maximum: {
+          Value: 34.5,
+          Unit: "C",
+          UnitType: 17,
+        },
+      },
+      Day: {
+        Icon: 1,
+        IconPhrase: "Sunny",
+        HasPrecipitation: false,
+      },
+      Night: {
+        Icon: 34,
+        IconPhrase: "Mostly clear",
+        HasPrecipitation: false,
+      },
+      Sources: ["AccuWeather"],
+      MobileLink:
+        "http://www.accuweather.com/en/il/tel-aviv/215854/daily-weather-forecast/215854?day=2&unit=c&lang=en-us",
+      Link: "http://www.accuweather.com/en/il/tel-aviv/215854/daily-weather-forecast/215854?day=2&unit=c&lang=en-us",
+    },
+    {
+      Date: "2023-07-29T07:00:00+03:00",
+      EpochDate: 1690603200,
+      Temperature: {
+        Minimum: {
+          Value: 26.4,
+          Unit: "C",
+          UnitType: 17,
+        },
+        Maximum: {
+          Value: 32.6,
+          Unit: "C",
+          UnitType: 17,
+        },
+      },
+      Day: {
+        Icon: 1,
+        IconPhrase: "Sunny",
+        HasPrecipitation: false,
+      },
+      Night: {
+        Icon: 34,
+        IconPhrase: "Mostly clear",
+        HasPrecipitation: false,
+      },
+      Sources: ["AccuWeather"],
+      MobileLink:
+        "http://www.accuweather.com/en/il/tel-aviv/215854/daily-weather-forecast/215854?day=3&unit=c&lang=en-us",
+      Link: "http://www.accuweather.com/en/il/tel-aviv/215854/daily-weather-forecast/215854?day=3&unit=c&lang=en-us",
+    },
+    {
+      Date: "2023-07-30T07:00:00+03:00",
+      EpochDate: 1690689600,
+      Temperature: {
+        Minimum: {
+          Value: 25.2,
+          Unit: "C",
+          UnitType: 17,
+        },
+        Maximum: {
+          Value: 31.4,
+          Unit: "C",
+          UnitType: 17,
+        },
+      },
+      Day: {
+        Icon: 2,
+        IconPhrase: "Mostly sunny",
+        HasPrecipitation: false,
+      },
+      Night: {
+        Icon: 34,
+        IconPhrase: "Mostly clear",
+        HasPrecipitation: false,
+      },
+      Sources: ["AccuWeather"],
+      MobileLink:
+        "http://www.accuweather.com/en/il/tel-aviv/215854/daily-weather-forecast/215854?day=4&unit=c&lang=en-us",
+      Link: "http://www.accuweather.com/en/il/tel-aviv/215854/daily-weather-forecast/215854?day=4&unit=c&lang=en-us",
+    },
+    {
+      Date: "2023-07-31T07:00:00+03:00",
+      EpochDate: 1690776000,
+      Temperature: {
+        Minimum: {
+          Value: 24.9,
+          Unit: "C",
+          UnitType: 17,
+        },
+        Maximum: {
+          Value: 31.6,
+          Unit: "C",
+          UnitType: 17,
+        },
+      },
+      Day: {
+        Icon: 1,
+        IconPhrase: "Sunny",
+        HasPrecipitation: false,
+      },
+      Night: {
+        Icon: 35,
+        IconPhrase: "Partly cloudy",
+        HasPrecipitation: false,
+      },
+      Sources: ["AccuWeather"],
+      MobileLink:
+        "http://www.accuweather.com/en/il/tel-aviv/215854/daily-weather-forecast/215854?day=5&unit=c&lang=en-us",
+      Link: "http://www.accuweather.com/en/il/tel-aviv/215854/daily-weather-forecast/215854?day=5&unit=c&lang=en-us",
+    },
+  ],
+};
+export const fakeResTelAvivInfoFiveImpirial = {
+  Headline: {
+    EffectiveDate: "2023-07-27T14:00:00+03:00",
+    EffectiveEpochDate: 1690455600,
+    Severity: 4,
+    Text: "Danger of dehydration and heat stroke if outside for extended periods of time Thursday afternoon",
+    Category: "heat",
+    EndDate: "2023-07-27T20:00:00+03:00",
+    EndEpochDate: 1690477200,
+    MobileLink:
+      "http://www.accuweather.com/en/il/tel-aviv/215854/daily-weather-forecast/215854?lang=en-us",
+    Link: "http://www.accuweather.com/en/il/tel-aviv/215854/daily-weather-forecast/215854?lang=en-us",
+  },
+  DailyForecasts: [
+    {
+      Date: "2023-07-27T07:00:00+03:00",
+      EpochDate: 1690430400,
+      Temperature: {
+        Minimum: {
+          Value: 77,
+          Unit: "F",
+          UnitType: 18,
+        },
+        Maximum: {
+          Value: 101,
+          Unit: "F",
+          UnitType: 18,
+        },
+      },
+      Day: {
+        Icon: 2,
+        IconPhrase: "Mostly sunny",
+        HasPrecipitation: false,
+      },
+      Night: {
+        Icon: 33,
+        IconPhrase: "Clear",
+        HasPrecipitation: false,
+      },
+      Sources: ["AccuWeather"],
+      MobileLink:
+        "http://www.accuweather.com/en/il/tel-aviv/215854/daily-weather-forecast/215854?day=1&lang=en-us",
+      Link: "http://www.accuweather.com/en/il/tel-aviv/215854/daily-weather-forecast/215854?day=1&lang=en-us",
+    },
+    {
+      Date: "2023-07-28T07:00:00+03:00",
+      EpochDate: 1690516800,
+      Temperature: {
+        Minimum: {
+          Value: 80,
+          Unit: "F",
+          UnitType: 18,
+        },
+        Maximum: {
+          Value: 94,
+          Unit: "F",
+          UnitType: 18,
+        },
+      },
+      Day: {
+        Icon: 1,
+        IconPhrase: "Sunny",
+        HasPrecipitation: false,
+      },
+      Night: {
+        Icon: 34,
+        IconPhrase: "Mostly clear",
+        HasPrecipitation: false,
+      },
+      Sources: ["AccuWeather"],
+      MobileLink:
+        "http://www.accuweather.com/en/il/tel-aviv/215854/daily-weather-forecast/215854?day=2&lang=en-us",
+      Link: "http://www.accuweather.com/en/il/tel-aviv/215854/daily-weather-forecast/215854?day=2&lang=en-us",
+    },
+    {
+      Date: "2023-07-29T07:00:00+03:00",
+      EpochDate: 1690603200,
+      Temperature: {
+        Minimum: {
+          Value: 80,
+          Unit: "F",
+          UnitType: 18,
+        },
+        Maximum: {
+          Value: 91,
+          Unit: "F",
+          UnitType: 18,
+        },
+      },
+      Day: {
+        Icon: 1,
+        IconPhrase: "Sunny",
+        HasPrecipitation: false,
+      },
+      Night: {
+        Icon: 34,
+        IconPhrase: "Mostly clear",
+        HasPrecipitation: false,
+      },
+      Sources: ["AccuWeather"],
+      MobileLink:
+        "http://www.accuweather.com/en/il/tel-aviv/215854/daily-weather-forecast/215854?day=3&lang=en-us",
+      Link: "http://www.accuweather.com/en/il/tel-aviv/215854/daily-weather-forecast/215854?day=3&lang=en-us",
+    },
+    {
+      Date: "2023-07-30T07:00:00+03:00",
+      EpochDate: 1690689600,
+      Temperature: {
+        Minimum: {
+          Value: 77,
+          Unit: "F",
+          UnitType: 18,
+        },
+        Maximum: {
+          Value: 89,
+          Unit: "F",
+          UnitType: 18,
+        },
+      },
+      Day: {
+        Icon: 2,
+        IconPhrase: "Mostly sunny",
+        HasPrecipitation: false,
+      },
+      Night: {
+        Icon: 34,
+        IconPhrase: "Mostly clear",
+        HasPrecipitation: false,
+      },
+      Sources: ["AccuWeather"],
+      MobileLink:
+        "http://www.accuweather.com/en/il/tel-aviv/215854/daily-weather-forecast/215854?day=4&lang=en-us",
+      Link: "http://www.accuweather.com/en/il/tel-aviv/215854/daily-weather-forecast/215854?day=4&lang=en-us",
+    },
+    {
+      Date: "2023-07-31T07:00:00+03:00",
+      EpochDate: 1690776000,
+      Temperature: {
+        Minimum: {
+          Value: 77,
+          Unit: "F",
+          UnitType: 18,
+        },
+        Maximum: {
+          Value: 89,
+          Unit: "F",
+          UnitType: 18,
+        },
+      },
+      Day: {
+        Icon: 1,
+        IconPhrase: "Sunny",
+        HasPrecipitation: false,
+      },
+      Night: {
+        Icon: 35,
+        IconPhrase: "Partly cloudy",
+        HasPrecipitation: false,
+      },
+      Sources: ["AccuWeather"],
+      MobileLink:
+        "http://www.accuweather.com/en/il/tel-aviv/215854/daily-weather-forecast/215854?day=5&lang=en-us",
+      Link: "http://www.accuweather.com/en/il/tel-aviv/215854/daily-weather-forecast/215854?day=5&lang=en-us",
+    },
+  ],
+};
