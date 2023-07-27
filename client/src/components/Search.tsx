@@ -1,13 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Autocomplete, Box, Container, Paper, TextField } from "@mui/material";
-import { locationsRes } from "../util/fakeResponse";
+import { fakeResTelAvivInfo, locationsRes } from "../util/fakeResponse";
 import axios from "axios";
 import { API } from "../App";
+import { useAppDispatch } from "../app/hooks";
+import { setWeather } from "../features/weather/weatherSlice";
 
 const Search = () => {
   const [locations, setLocations] = useState<LocationType[]>(locationsRes);
   const [location, setLocation] = useState<string>("");
   const [locationKey, setLocationKey] = useState("");
+
+  const dispatch = useAppDispatch();
 
   const search = async () => {
     try {
@@ -25,23 +29,23 @@ const Search = () => {
   const searchWeather = async () => {
     try {
       const { data } = await axios.get(
-        `${API}/locations/v1/cities/currentconditions/v1/215854?apikey=%093vMphpay81AU2hjh6QZXGlketl9M62WJ`
+        `${API}/locations/v1/cities/currentconditions/v1/${locationKey}?apikey=%093vMphpay81AU2hjh6QZXGlketl9M62WJ`
       );
       console.log(data);
-        
+
+      dispatch(setWeather(data));
     } catch (error) {
       console.error(error);
     }
   };
 
   useEffect(() => {
-    // console.log(locations);
-    // searchWeather()
+    dispatch(setWeather(fakeResTelAvivInfo));
   }, []);
 
-    // useEffect(() => {
-    //   search();
-    // }, [location]);
+  // useEffect(() => {
+  //   search();
+  // }, [location]);
 
   return (
     <Container sx={{ mt: 10 }}>
@@ -63,7 +67,7 @@ const Search = () => {
                 onClick={(ev) => {
                   props.onClick!(ev);
                   setLocation(option.LocalizedName);
-                  setLocationKey(option.Key)
+                  setLocationKey(option.Key);
                 }}
               >
                 {option.LocalizedName}
