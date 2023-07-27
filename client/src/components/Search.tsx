@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Autocomplete, Box, Container, Paper, TextField } from "@mui/material";
 import { locationsRes } from "../util/fakeResponse";
 import axios from "axios";
@@ -7,6 +7,7 @@ import { API } from "../App";
 const Search = () => {
   const [locations, setLocations] = useState<LocationType[]>(locationsRes);
   const [location, setLocation] = useState<string>("");
+  const [displayedLocation, setDisplayedLocation] = useState("");
 
   const search = async () => {
     try {
@@ -23,7 +24,7 @@ const Search = () => {
   };
 
   useEffect(() => {
-    console.log(locations);
+    // console.log(locations);
   }, []);
 
   //   useEffect(() => {
@@ -34,6 +35,7 @@ const Search = () => {
     <Container sx={{ mt: 10 }}>
       <form>
         <Autocomplete
+          blurOnSelect
           disablePortal
           id="location-auto-complete"
           options={locations}
@@ -42,12 +44,16 @@ const Search = () => {
             return option.LocalizedName;
           }}
           renderOption={(props, option) => {
+            console.log("props");
+            console.log(props);
             return (
               <Box
-                key={`${option.LocalizedName}-${option.AdministrativeArea.ID}-${option.Country.ID}`}
                 component="li"
-                // sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
                 {...props}
+                onClick={(ev) => {
+                  props.onClick!(ev);
+                  setLocation(option.LocalizedName);
+                }}
               >
                 {option.LocalizedName}
               </Box>
@@ -65,6 +71,7 @@ const Search = () => {
           )}
         />
       </form>
+      {location}
     </Container>
   );
 };
