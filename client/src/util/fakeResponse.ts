@@ -1119,3 +1119,45 @@ export const fakeResTelAvivInfoFiveImpirial = {
     },
   ],
 };
+
+export const fakeFavRes = [
+  {
+    cityName: "Tokyo",
+    info: {
+      EpochTime: 1690623480,
+      HasPrecipitation: false,
+      IsDayTime: true,
+      Link: "http://www.accuweather.com/en/jp/tokyo/226396/current-weather/226396?lang=en-us",
+      LocalObservationDateTime: "2023-07-29T18:38:00+09:00",
+      MobileLink:
+        "http://www.accuweather.com/en/jp/tokyo/226396/current-weather/226396?lang=en-us",
+      PrecipitationType: null,
+      Temperature: {
+        Imperial: { Value: 88, Unit: "F", UnitType: 18 },
+        Metric: { Value: 31.3, Unit: "C", UnitType: 17 },
+      },
+      WeatherIcon: 1,
+      WeatherText: "Sunny",
+    },
+  },
+  {
+    cityName: "Tel Aviv",
+    info: {
+      EpochTime: 1690624080,
+      HasPrecipitation: false,
+      IsDayTime: true,
+      Link: "http://www.accuweather.com/en/il/tel-aviv/215854/current-weather/215854?lang=en-us",
+      LocalObservationDateTime: "2023-07-29T12:48:00+03:00",
+      MobileLink:
+        "http://www.accuweather.com/en/il/tel-aviv/215854/current-weather/215854?lang=en-us",
+      PrecipitationType: null,
+      Temperature: {
+        Imperial: { Value: 89, Unit: "F", UnitType: 18 },
+        Metric: { Value: 31.4, Unit: "C", UnitType: 17 },
+      },
+
+      WeatherIcon: 1,
+      WeatherText: "Sunny",
+    },
+  },
+];

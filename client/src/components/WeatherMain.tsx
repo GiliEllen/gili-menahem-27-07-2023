@@ -35,12 +35,11 @@ const WeatherMain = () => {
       sessionStorage.removeItem(favNumber)
     } else {
       setFav(true)
-      sessionStorage.setItem(favNumber, "true")
+      sessionStorage.setItem(favNumber, location.LocalizedName)
     }
   }
 
   useEffect(() => {
-    console.log("changed loc")
     handlecheckIfFav();
   }, [location]);
 

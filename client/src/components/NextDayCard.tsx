@@ -2,8 +2,17 @@ import { Container, Paper, Typography, Stack } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { weatherIcons } from "../Types/types";
 import { Player } from "@lottiefiles/react-lottie-player";
+import { useAppSelector } from "../app/hooks";
+import { unitSelector } from "../features/unit/unitSlice";
 
-const NextDayCard = ({ dayIdx, day }: any) => {
+interface NextDayCard {
+  dayIdx?: number,
+  day?: any,
+  cityInfo?: any;
+}
+
+const NextDayCard = ({ dayIdx, day, cityInfo }: any) => {
+  const [ cardType, setCardType] = useState()
   const [weekday, setWeekDay] = useState("");
   const weekdays = [
     "Sunday",
@@ -21,6 +30,7 @@ const NextDayCard = ({ dayIdx, day }: any) => {
     "Friday",
     "Saturday",
   ];
+  const unit = useAppSelector(unitSelector);
 
   const calculateDay = () => {
     const d = new Date();
@@ -42,13 +52,19 @@ const NextDayCard = ({ dayIdx, day }: any) => {
   }
 
   useEffect(() => {
-    calculateDay();
-    calculateDate()
+    if (dayIdx && day || dayIdx == 0 && day) {
+      calculateDay();
+      calculateDate()
+    } else if (cityInfo) {
+
+    }
+   
   }, []);
   return (
     <Paper>
       <Stack>
       <Player style={{width: "100px"}} autoplay loop src={findIcon()}></Player>
+
         <Typography>{weekday} {calculateDate()}</Typography>
         <Typography>{day.Day.IconPhrase}</Typography>
         <Typography>
