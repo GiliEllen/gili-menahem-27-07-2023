@@ -198,7 +198,7 @@ const Header = () => {
 
   return (
     <Box>
-      <AppBar sx={{ bgcolor: mode === "light" ? "#ffffff" : "inherit" }}>
+      <AppBar sx={{top: 0, bgcolor: mode === "light" ? "#ffffff" : "#2b3746" }}>
         {view ? displayMobile() : displayDesktop()}
       </AppBar>
 
