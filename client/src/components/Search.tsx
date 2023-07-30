@@ -10,13 +10,15 @@ import {
   locationSelector,
   setLocationSelector,
 } from "../features/location/locationSlice";
+import { modeSelector } from "../features/mode/modeSlice";
 
 const Search = () => {
   const [locations, setLocations] = useState<LocationType[]>([]);
   const [location, setLocation] = useState<string>("");
   const [locationKey, setLocationKey] = useState("");
 
-  const locationGlobal = useAppSelector(locationSelector)
+  const locationGlobal = useAppSelector(locationSelector);
+  const mode = useAppSelector(modeSelector)
 
   const dispatch = useAppDispatch();
 
@@ -48,12 +50,10 @@ const Search = () => {
     dispatch(setWeather(fakeResTelAvivInfo[0]));
   }, []);
 
-
-
   // useEffect(() => {
   //   search();
   // }, [location]);
-  
+
   // useEffect(() => {
   //   if(locationGlobal && locationGlobal.value){
   //     searchWeather(locationGlobal.value.Key);
@@ -61,21 +61,21 @@ const Search = () => {
   // }, [locationGlobal]);
 
   return (
-    <Container>
-      <form>
+    <Paper sx={{ padding: 2 }}>
+      <form style={{ width: "100%" }}>
         <Autocomplete
           blurOnSelect
           disablePortal
           id="location-auto-complete"
           options={locations}
-          sx={{ width: 300 }}
+          sx={{ width: "100%" }}
           getOptionLabel={(option) => {
             return option.LocalizedName;
           }}
           renderOption={(props, option) => {
             return (
               <Box
-              key={option.LocalizedName}
+                key={option.LocalizedName}
                 component="li"
                 {...props}
                 onClick={(ev) => {
@@ -92,27 +92,29 @@ const Search = () => {
           renderInput={(params) => (
             <TextField
               {...params}
-
+              variant="filled"
               label="Location"
               value={location}
               onChange={(ev: any) => {
                 const { value } = ev.target;
-                console.log("Input value: ", value);
-
                 const re = /^[A-Za-z]+$/;
                 if (value !== "" && !re.test(value)) {
-                  alert("please write onlt in english")
-                  setLocation("")
+                  alert("please write onlt in english");
+                  setLocation("");
                 } else {
                   setLocation(value);
                 }
               }}
+              sx={{"&.MuiTextField-root": mode === "light" ? {
+                backgroundColor: "rgb(232, 244, 255)"
+              } : {
+                backgroundColor: "rgb(52, 69, 91)"
+              }}}
             />
           )}
         />
       </form>
-      {location}
-    </Container>
+    </Paper>
   );
 };
 

@@ -12,10 +12,9 @@ const WeatherPage = () => {
   return (
     <Container>
       <Header />
-      <Stack sx={{ mt: 10 }} direction={"row"} justifyContent={"space-between"}>
+      <Container sx={{ mt: 10, mb: 2 }}>
         <Search />
-        <UnitPreference />
-      </Stack>
+      </Container>
 
       <WeatherMain />
       {/* {weather ? <p> {JSON.stringify(weather)}</p> : null} */}
