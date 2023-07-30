@@ -13,6 +13,8 @@ import { useState } from "react";
 import { useEffect } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import { NavLink as RouterLink } from "react-router-dom";
+import { useAppSelector } from "../app/hooks";
+import { unitSelector } from "../features/unit/unitSlice";
 
 const headersData = [
   {
@@ -28,6 +30,7 @@ const headersData = [
 const Header = () => {
   const [mobileView, setMobileView] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const unit = useAppSelector(unitSelector);
 
   useEffect(() => {
     const setResponsiveness = () => {
@@ -98,7 +101,6 @@ const Header = () => {
         >
           <MenuItem>{label}</MenuItem>
         </Link>
-        
       );
     });
   };
@@ -120,15 +122,15 @@ const Header = () => {
         //   {label}
         // </Button>
         <RouterLink
-        key={label}
-        to={href}
-        className={({ isActive }) => {
-          return isActive ? "active" : "";
-        }}
-      >
-        {label}
-      </RouterLink>
-      )
+          key={label}
+          to={href}
+          className={({ isActive }) => {
+            return isActive ? "active" : "";
+          }}
+        >
+          {label}
+        </RouterLink>
+      );
     });
   };
 
