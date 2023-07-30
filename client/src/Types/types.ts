@@ -1,3 +1,21 @@
+import * as Sunny from "../assets/animations/sunny.json";
+import * as PartlyCloudy from "../assets/animations/partly cloudy.json";
+import * as MostlySunny from "../assets/animations/mostly sunny.json";
+import * as Mist from "../assets/animations/mist.json";
+import * as CloudyNight from "../assets/animations/cloudy night.json";
+import * as Night from "../assets/animations/night.json";
+import * as PartlyShower from "../assets/animations/partly shower.json";
+import * as RainyNight from "../assets/animations/rainy night.json";
+import * as SnowDay from "../assets/animations/snow day.json";
+import * as SnowNight from "../assets/animations/snow night.json";
+import * as Snow from "../assets/animations/snow.json";
+import * as StormAndShowers from "../assets/animations/storm and showers.json";
+import * as Storm from "../assets/animations/storm.json";
+import * as Thunder from "../assets/animations/thunder.json";
+import * as Windy from "../assets/animations/windy.json";
+
+
+
 export interface WeatherType {
   LocalObservationDateTime: any;
   EpochTime: number;
@@ -380,18 +398,76 @@ export interface WeatherType {
 }
 
 export interface LocationType {
-    AdministrativeArea: {
-      ID: string;
-      LocalizedName: string;
-    };
-    Country: {
-      ID: string;
-      LocalizedName: string;
-    };
-    Key: string;
+  AdministrativeArea: {
+    ID: string;
     LocalizedName: string;
-    Rank: number;
-    Type: string;
-    Version: number;
-  }
-  
+  };
+  Country: {
+    ID: string;
+    LocalizedName: string;
+  };
+  Key: string;
+  LocalizedName: string;
+  Rank: number;
+  Type: string;
+  Version: number;
+}
+
+export const weatherIcons = [
+  {
+    iconNumber: 1,
+    icon: Sunny,
+    day: true,
+    night: false,
+    text: "Sunny",
+  },
+  {
+    iconNumber: 2,
+    icon: MostlySunny,
+    day: true,
+    night: false,
+    text: "Mostly Sunny",
+  },
+  {
+    iconNumber: 3,
+    icon: PartlyCloudy,
+    day: true,
+    night: false,
+    text: "Partly Sunny",
+  },
+  {
+    iconNumber: 4,
+    icon: PartlyCloudy,
+    day: true,
+    night: false,
+    text: "Intermittent Clouds",
+  },
+  {
+    iconNumber: 5,
+    icon: Mist,
+    day: true,
+    night: false,
+    text: "Hazy Sunshine",
+  },
+  {
+    iconNumber: 6,
+    icon: Windy,
+    day: true,
+    night: false,
+    text: "Mostly Cloudy",
+  },
+  {
+    iconNumber: 7,
+    icon: Windy,
+    day: true,
+    night: false,
+    text: "Cloudy",
+  },
+  {
+    iconNumber: 8,
+    icon: Windy,
+    day: true,
+    night: false,
+    text: "Dreary (Overcast)",
+  },
+];

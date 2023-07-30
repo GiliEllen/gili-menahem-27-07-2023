@@ -6,6 +6,7 @@ import { Player } from '@lottiefiles/react-lottie-player';
 import * as Sunny from "../assets/animations/sunny.json"
 import { locationSelector } from "../features/location/locationSlice";
 import WeatherNext from "./WeatherNext";
+import { weatherIcons } from "../Types/types";
 
 const WeatherMain = () => {
   const weather = useAppSelector(weatherSelector);
@@ -19,7 +20,7 @@ const WeatherMain = () => {
             <Stack direction={"row"} justifyContent={"space-between"}>
               <Stack direction={"row"}>
                 <Box>
-                    <Player style={{width: "100px"}} autoplay src={Sunny}></Player>
+                    <Player style={{width: "100px"}} autoplay src={weatherIcons[1].icon}></Player>
                 </Box>
                 <Box>
                     <Typography>{location.LocalizedName}</Typography>
