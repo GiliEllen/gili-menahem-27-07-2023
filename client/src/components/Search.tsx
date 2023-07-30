@@ -28,7 +28,7 @@ const Search = () => {
       console.error(error);
     }
   };
-  const searchWeather = async () => {
+  const searchWeather = async (locationKeyinfo:string) => {
     try {
       const { data } = await axios.get(
         `${API}/locations/v1/cities/currentconditions/v1/${locationKey}?apikey=%093vMphpay81AU2hjh6QZXGlketl9M62WJ`
@@ -43,6 +43,9 @@ const Search = () => {
 
   useEffect(() => {
     dispatch(setWeather(fakeResTelAvivInfo[0]));
+  }, []);
+  useEffect(() => {
+    // searchWeather(215854)
   }, []);
 
   // useEffect(() => {
