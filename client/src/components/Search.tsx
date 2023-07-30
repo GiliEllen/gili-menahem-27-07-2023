@@ -50,7 +50,7 @@ const Search = () => {
   // }, [location]);
 
   return (
-    <Container sx={{ mt: 10 }}>
+    <Container >
       <form>
         <Autocomplete
           blurOnSelect

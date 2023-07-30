@@ -3,6 +3,7 @@ import * as PartlyCloudy from "../assets/animations/partly cloudy.json";
 import * as MostlySunny from "../assets/animations/mostly sunny.json";
 import * as Mist from "../assets/animations/mist.json";
 import * as CloudyNight from "../assets/animations/cloudy night.json";
+import * as PartlyCloudyNight from "../assets/animations/partly cloudy night.json";
 import * as Night from "../assets/animations/night.json";
 import * as PartlyShower from "../assets/animations/partly shower.json";
 import * as RainyNight from "../assets/animations/rainy night.json";
@@ -13,6 +14,10 @@ import * as StormAndShowers from "../assets/animations/storm and showers.json";
 import * as Storm from "../assets/animations/storm.json";
 import * as Thunder from "../assets/animations/thunder.json";
 import * as Windy from "../assets/animations/windy.json";
+import * as Foggy from "../assets/animations/foggy.json";
+import * as Rain from "../assets/animations/rain.json";
+import * as DarkerCloudes from "../assets/animations/darker-clouds.json";
+import * as DarkWindy from "../assets/animations/darker-clouds.json";
 
 
 
@@ -465,9 +470,212 @@ export const weatherIcons = [
   },
   {
     iconNumber: 8,
-    icon: Windy,
+    icon: DarkWindy,
     day: true,
     night: false,
-    text: "Dreary (Overcast)",
+    text: "Dreary (Overcast)", //dark windy
+  },
+  {
+    iconNumber: 11,
+    icon: Mist,
+    day: true,
+    night: false,
+    text: "Fog",
+  },
+  {
+    iconNumber: 12,
+    icon: Rain,
+    day: true,
+    night: false,
+    text: "Showers", //only clouds with rain
+  },
+  {
+    iconNumber: 13,
+    icon: PartlyShower,
+    day: true,
+    night: false,
+    text: "Mostly Cloudy with Showers",
+  },
+  {
+    iconNumber: 14,
+    icon: PartlyShower,
+    day: true,
+    night: false,
+    text: "Partly Sunny with Showers",
+  },
+  {
+    iconNumber: 15,
+    icon: Thunder,
+    day: true,
+    night: false,
+    text: "Thunder-Storms",
+  },
+  {
+    iconNumber: 16,
+    icon: StormAndShowers,
+    day: true,
+    night: false,
+    text: "Mostly Cloudy with Thunder-Storms",
+  },
+  {
+    iconNumber: 17,
+    icon: StormAndShowers,
+    day: true,
+    night: false,
+    text: "Partly Sunny with Thunder-Storms",
+  },
+  {
+    iconNumber: 18,
+    icon: Rain, // without sun
+    day: true,
+    night: false,
+    text: "Rain",
+  },
+  {
+    iconNumber: 19,
+    icon: Mist, 
+    day: true,
+    night: false,
+    text: "Flurries",
+  },
+  {
+    iconNumber: 20,
+    icon: Foggy, 
+    day: true,
+    night: false,
+    text: "Mostly Cloudy with Flurries",
+  },
+  {
+    iconNumber: 21,
+    icon: Foggy, 
+    day: true,
+    night: false,
+    text: "Partly Sunnywith Flurries",
+  },
+  {
+    iconNumber: 22,
+    icon: Snow, 
+    day: true,
+    night: false,
+    text: "Snow",
+  },
+  {
+    iconNumber: 23,
+    icon: SnowDay, 
+    day: true,
+    night: false,
+    text: "Mostly Cloudy with Snow",
+  },
+  {
+    iconNumber: 24,
+    icon: "", //ice ??
+    day: true,
+    night: false,
+    text: "ice",
+  },
+  {
+    iconNumber: 25,
+    icon: Rain, 
+    day: true,
+    night: false,
+    text: "Sleet",
+  },
+  {
+    iconNumber: 26,
+    icon: DarkerCloudes, 
+    day: true,
+    night: false,
+    text: "Freezing Rain",
+  },
+  {
+    iconNumber: 29,
+    icon: Snow, 
+    day: true,
+    night: false,
+    text: "Rain and Snow",
+  },
+  {
+    iconNumber: 33,
+    icon: Night, 
+    day: true,
+    night: false,
+    text: "Clear Night",
+  },
+  {
+    iconNumber: 34,
+    icon: PartlyCloudyNight, 
+    day: true,
+    night: false,
+    text: "Mostly Clear Night",
+  },
+  {
+    iconNumber: 35,
+    icon: CloudyNight, 
+    day: true,
+    night: false,
+    text: "Partly Cloudy Night",
+  },
+  {
+    iconNumber: 36,
+    icon: CloudyNight, 
+    day: true,
+    night: false,
+    text: "Intermittent Clouds Night",
+  },
+  {
+    iconNumber: 37,
+    icon: CloudyNight, 
+    day: true,
+    night: false,
+    text: "Hazy Moonlight",
+  },
+  {
+    iconNumber: 38,
+    icon: CloudyNight, 
+    day: true,
+    night: false,
+    text: "Mostly Cloudy Night",
+  },
+  {
+    iconNumber: 39,
+    icon: RainyNight, 
+    day: true,
+    night: false,
+    text: "Partly Cloudy with Showers Night",
+  },
+  {
+    iconNumber: 40,
+    icon: RainyNight, 
+    day: true,
+    night: false,
+    text: "Mostly Cloudy with Showers Night",
+  },
+  {
+    iconNumber: 41,
+    icon: Storm, 
+    day: true,
+    night: false,
+    text: "Partly Cloudy with Thunder-Storms",
+  },
+  {
+    iconNumber: 42,
+    icon: Storm, 
+    day: true,
+    night: false,
+    text: "Mostly Cloudy with Thunder-Storms",
+  },
+  {
+    iconNumber: 43,
+    icon: CloudyNight, 
+    day: true,
+    night: false,
+    text: "Mostly Cloudy with Flurries",
+  },
+  {
+    iconNumber: 44,
+    icon: SnowNight, 
+    day: true,
+    night: false,
+    text: "Mostly Cloudy with Snow",
   },
 ];
