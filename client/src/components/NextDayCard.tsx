@@ -1,7 +1,7 @@
 import { Container, Paper, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 
-const NextDayCard = ({ day, temp, measure }: any) => {
+const NextDayCard = ({ dayIdx, day }: any) => {
   const [weekday, setWeekDay] = useState("");
   const weekdays = [
     "Sunday",
@@ -22,7 +22,12 @@ const NextDayCard = ({ day, temp, measure }: any) => {
 
   const calculateDay = () => {
     const d = new Date();
-    setWeekDay(weekdays[d.getDay()+ day]);
+    setWeekDay(weekdays[d.getDay() + dayIdx]);
+  };
+  const calculateAvreageTemp = () => {
+    return Math.round(
+      (day.Temperature.Minimum.Value + day.Temperature.Maximum.Value) / 2
+    );
   };
 
   useEffect(() => {
@@ -38,8 +43,9 @@ const NextDayCard = ({ day, temp, measure }: any) => {
       }}
     >
       <Typography>{weekday}</Typography>
-        {/* <Typography>{temp} {measure}</Typography> */}
-      test
+      <Typography>
+        {calculateAvreageTemp()} {day.Temperature.Minimum.Unit}{" "}
+      </Typography>
     </Paper>
   );
 };
