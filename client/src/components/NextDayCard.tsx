@@ -26,6 +26,10 @@ const NextDayCard = ({ dayIdx, day }: any) => {
     const d = new Date();
     setWeekDay(weekdays[d.getDay() + dayIdx]);
   };
+  const calculateDate = () => {
+   const date = new Date(day.Date)
+   return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`
+  }
   const calculateAvreageTemp = () => {
     return Math.round(
       (day.Temperature.Minimum.Value + day.Temperature.Maximum.Value) / 2
@@ -39,12 +43,13 @@ const NextDayCard = ({ dayIdx, day }: any) => {
 
   useEffect(() => {
     calculateDay();
+    calculateDate()
   }, []);
   return (
     <Paper>
       <Stack>
       <Player style={{width: "100px"}} autoplay loop src={findIcon()}></Player>
-        <Typography>{weekday}</Typography>
+        <Typography>{weekday} {calculateDate()}</Typography>
         <Typography>{day.Day.IconPhrase}</Typography>
         <Typography>
           {calculateAvreageTemp()} {day.Temperature.Minimum.Unit}{" "}

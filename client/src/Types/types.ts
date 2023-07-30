@@ -17,7 +17,8 @@ import * as Windy from "../assets/animations/windy.json";
 import * as Foggy from "../assets/animations/foggy.json";
 import * as Rain from "../assets/animations/rain.json";
 import * as DarkerCloudes from "../assets/animations/darker-clouds.json";
-import * as DarkWindy from "../assets/animations/darker-clouds.json";
+import * as DarkWindy from "../assets/animations/wind dark.json";
+import * as Ice from "../assets/animations/ice.json";
 
 
 
@@ -487,7 +488,7 @@ export const weatherIcons = [
     icon: Rain,
     day: true,
     night: false,
-    text: "Showers", //only clouds with rain
+    text: "Showers", 
   },
   {
     iconNumber: 13,
@@ -526,7 +527,7 @@ export const weatherIcons = [
   },
   {
     iconNumber: 18,
-    icon: Rain, // without sun
+    icon: Rain, 
     day: true,
     night: false,
     text: "Rain",
@@ -568,7 +569,7 @@ export const weatherIcons = [
   },
   {
     iconNumber: 24,
-    icon: "", //ice ??
+    icon: Ice,
     day: true,
     night: false,
     text: "ice",
