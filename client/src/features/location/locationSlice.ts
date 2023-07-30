@@ -1,6 +1,6 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState, AppThunk } from "../../app/store";
-import { LocationType, WeatherType } from "../../Types/types";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { RootState } from "../../app/store";
+import { LocationType } from "../../Types/types";
 
 export interface LocationState {
   value: LocationType | null | any;
@@ -20,6 +20,7 @@ export const LocationSlice = createSlice({
     setLocationSelector: (state, action: PayloadAction<any>) => {
       state.value = action.payload;
     },
+
   },
 });
 

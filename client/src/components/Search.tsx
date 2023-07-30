@@ -6,7 +6,7 @@ import { API } from "../App";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { setWeather } from "../features/weather/weatherSlice";
 import { LocationType } from "../Types/types";
-import { setLocationSelector } from "../features/location/locationSlice";
+import { locationSelector, setLocationSelector } from "../features/location/locationSlice";
 
 const Search = () => {
   const [locations, setLocations] = useState<LocationType[]>(locationsRes);
