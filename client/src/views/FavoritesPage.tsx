@@ -5,10 +5,12 @@ import axios from "axios";
 import { API } from "../App";
 import { fakeFavRes } from "../util/fakeResponse";
 import CityCard from "../components/CityCard";
+import { useAppSelector } from "../app/hooks";
+import { viewPortSelector } from "../features/viewport/viewportSlice";
 
 const FavoritesPage = () => {
   const [favWeatherInfo, setFavWeatherInfo] = useState<any[]>([]);
-
+  const view = useAppSelector(viewPortSelector)
   const handleGetWeatherForFav = () => {
     let keysArr = Object.keys(sessionStorage);
     let valuesArr = Object.values(sessionStorage);
@@ -60,7 +62,7 @@ const FavoritesPage = () => {
       <Typography mt={12} variant="h4">
         My favorite Cities
       </Typography>
-      <Stack mt={4} direction={"row"} gap={8}>
+      <Stack mt={4} direction={view ? "column" : "row"} gap={8}>
         {favWeatherInfo.length > 0 ? (
           favWeatherInfo.map((cityInfo) => {
             return <CityCard key={cityInfo.cityName} cityInfo={cityInfo} />;

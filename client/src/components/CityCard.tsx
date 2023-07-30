@@ -28,7 +28,7 @@ const CityCard: FC<CityCardProps> = ({ cityInfo }) => {
     });
   };
   return (
-    <Paper onClick={handleClick}>
+    <Paper onClick={handleClick} sx={{padding:2}}>
       <Player
         style={{ width: "100px" }}
         autoplay
