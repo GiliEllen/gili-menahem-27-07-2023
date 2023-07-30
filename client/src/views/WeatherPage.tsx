@@ -6,6 +6,7 @@ import { weatherSelector } from "../features/weather/weatherSlice";
 import WeatherMain from "../components/WeatherMain";
 import UnitPreference from "../components/UnitPreference";
 import { Container, Stack } from "@mui/material";
+import WeatherNext from "../components/WeatherNext";
 
 const WeatherPage = () => {
   // const weather = useAppSelector(weatherSelector);
@@ -17,6 +18,8 @@ const WeatherPage = () => {
       </Container>
 
       <WeatherMain />
+      <WeatherNext />
+
       {/* {weather ? <p> {JSON.stringify(weather)}</p> : null} */}
     </Container>
   );

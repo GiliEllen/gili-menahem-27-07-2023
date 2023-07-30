@@ -97,7 +97,30 @@ const WeatherMain = () => {
       <Paper>
         {weather && locationGlobal ? (
           <>
-            <Stack direction={"row"} justifyContent={"space-between"}>
+          <Stack sx={{padding: 8}} direction={"row"} justifyContent={"space-between"}>
+            <Stack>
+              <Typography>{locationGlobal.LocalizedName}</Typography>
+              {unit === "C" ? (
+                    <Typography>
+                      {weather.Temperature.Metric.Value}{" "}
+                      {weather.Temperature.Metric.Unit}
+                    </Typography>
+                  ) : (
+                    <Typography>
+                      {weather.Temperature.Imperial.Value}{" "}
+                      {weather.Temperature.Imperial.Unit}
+                    </Typography>
+                  )}
+                  <Typography variant="h2">{weather.WeatherText}</Typography>
+            </Stack>
+            <Box>
+                  <Player
+                    autoplay
+                    src={weatherIcons[1].icon}
+                  ></Player>
+                </Box>
+          </Stack>
+            {/* <Stack direction={"row"} justifyContent={"space-between"}>
               <Stack direction={"row"}>
                 <Box>
                   <Player
@@ -124,13 +147,11 @@ const WeatherMain = () => {
               <Box onClick={handleSetFav}>
                 {fav ? <FavoriteIcon /> : <FavoriteBorderIcon />}
               </Box>
-            </Stack>
-            <Stack direction={"row"} justifyContent={"center"}>
+            </Stack> */}
+            {/* <Stack direction={"row"} justifyContent={"center"}>
               <Typography variant="h2">{weather.WeatherText}</Typography>
-            </Stack>
-            <Stack direction={"row"} justifyContent={"space-evenly"}>
-              <WeatherNext />
-            </Stack>
+            </Stack> */}
+
           </>
         ) : (
           <Box>

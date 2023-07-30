@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { darkTheme, lightTheme } from "./styles/theme";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 import { modeSelector } from "./features/mode/modeSlice";
+import { setViewport } from "./features/viewport/viewportSlice";
 
 export const API = "http://dataservice.accuweather.com";
 export const API_KEY = "3vMphpay81AU2hjh6QZXGlketl9M62WJ";
@@ -18,6 +19,22 @@ function App() {
 
   useEffect(() => {
     dispatch(setUnitFromPrefernce());
+  }, []);
+
+  useEffect(() => {
+    const setResponsiveness = () => {
+      return window.innerWidth < 900
+        ? dispatch(setViewport(true))
+        : dispatch(setViewport(false));
+    };
+
+    setResponsiveness();
+
+    window.addEventListener("resize", () => setResponsiveness());
+
+    return () => {
+      window.removeEventListener("resize", () => setResponsiveness());
+    };
   }, []);
 
   return (

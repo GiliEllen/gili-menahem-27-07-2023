@@ -27,6 +27,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import { modeSelector, setMode } from "../features/mode/modeSlice";
+import { viewPortSelector } from "../features/viewport/viewportSlice";
 
 const headersData = [
   {
@@ -42,30 +43,14 @@ const headersData = [
 ];
 
 const Header = () => {
-  const [mobileView, setMobileView] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [displaySettings, setDisplaySettings] = useState(false);
 
   const unit = useAppSelector(unitSelector);
   const mode = useAppSelector(modeSelector);
+  const view = useAppSelector(viewPortSelector);
 
   const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    const setResponsiveness = () => {
-      return window.innerWidth < 900
-        ? setMobileView(true)
-        : setMobileView(false);
-    };
-
-    setResponsiveness();
-
-    window.addEventListener("resize", () => setResponsiveness());
-
-    return () => {
-      window.removeEventListener("resize", () => setResponsiveness());
-    };
-  }, []);
 
   const handleClickSettings = () => {
     setDisplaySettings(!displaySettings);
@@ -213,9 +198,11 @@ const Header = () => {
 
   return (
     <Box>
-      <AppBar sx={{bgcolor: mode === "light" ? "#ffffff" : "inherit"}}>{mobileView ? displayMobile() : displayDesktop()}</AppBar>
+      <AppBar sx={{ bgcolor: mode === "light" ? "#ffffff" : "inherit" }}>
+        {view ? displayMobile() : displayDesktop()}
+      </AppBar>
 
-      {!mobileView && displaySettings ? (
+      {!view && displaySettings ? (
         <Paper
           sx={{
             position: "absolute",
