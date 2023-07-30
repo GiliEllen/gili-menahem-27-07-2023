@@ -26,6 +26,7 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
+import { modeSelector, setMode } from "../features/mode/modeSlice";
 
 const headersData = [
   {
@@ -42,10 +43,11 @@ const headersData = [
 
 const Header = () => {
   const [mobileView, setMobileView] = useState(false);
-
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const unit = useAppSelector(unitSelector);
   const [displaySettings, setDisplaySettings] = useState(false);
+
+  const unit = useAppSelector(unitSelector);
+  const mode = useAppSelector(modeSelector);
 
   const dispatch = useAppDispatch();
 
@@ -86,7 +88,12 @@ const Header = () => {
         </Box>
         <Box>
           <Typography>Mode:</Typography>
-          <ToggleButtonGroup>
+          <ToggleButtonGroup
+            value={mode}
+            onChange={(ev: any) => {
+              dispatch(setMode(ev.target.value));
+            }}
+          >
             <ToggleButton value={"dark"}>
               <DarkModeIcon />
             </ToggleButton>
@@ -101,7 +108,7 @@ const Header = () => {
 
   const displayDesktop = () => {
     return (
-      <Toolbar>
+      <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
         <div>{getMenuButtons()}</div>
         <IconButton onClick={handleClickSettings}>
           <SettingsIcon />
@@ -206,7 +213,7 @@ const Header = () => {
             height: "20vh",
             top: "56px",
             zIndex: 2,
-            padding: 2
+            padding: 2,
           }}
         >
           <Typography mt={2} variant="h5">

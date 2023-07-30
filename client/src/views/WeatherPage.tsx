@@ -10,7 +10,7 @@ import { Container, Stack } from "@mui/material";
 const WeatherPage = () => {
   // const weather = useAppSelector(weatherSelector);
   return (
-    <div>
+    <Container>
       <Header />
       <Stack sx={{ mt: 10 }} direction={"row"} justifyContent={"space-between"}>
         <Search />
@@ -19,7 +19,7 @@ const WeatherPage = () => {
 
       <WeatherMain />
       {/* {weather ? <p> {JSON.stringify(weather)}</p> : null} */}
-    </div>
+    </Container>
   );
 };
 

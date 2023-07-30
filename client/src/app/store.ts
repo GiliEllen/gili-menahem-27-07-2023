@@ -3,6 +3,7 @@ import counterReducer from "../features/counter/counterSlice";
 import weatherSlice from "../features/weather/weatherSlice";
 import locationSlice from "../features/location/locationSlice";
 import UnitSlice from "../features/unit/unitSlice";
+import ModeSlice from "../features/mode/modeSlice";
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     weather: weatherSlice,
     location: locationSlice,
     unit: UnitSlice,
+    mode: ModeSlice
   },
 });
 
