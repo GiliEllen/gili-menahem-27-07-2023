@@ -17,6 +17,7 @@ const WeatherPage = () => {
         <Search />
       </Container>
       <WeatherMain />
+
       <WeatherNext />
 
       {/* {weather ? <p> {JSON.stringify(weather)}</p> : null} */}
