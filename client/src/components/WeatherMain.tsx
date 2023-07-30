@@ -1,52 +1,95 @@
 import React, { useEffect, useState } from "react";
-import { useAppSelector } from "../app/hooks";
-import { weatherSelector } from "../features/weather/weatherSlice";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { setWeather, weatherSelector } from "../features/weather/weatherSlice";
 import { Box, Container, Paper, Stack, Typography } from "@mui/material";
 import { Player } from "@lottiefiles/react-lottie-player";
 import * as Sunny from "../assets/animations/sunny.json";
-import { locationSelector } from "../features/location/locationSlice";
+import {
+  locationSelector,
+  setLocationSelector,
+} from "../features/location/locationSlice";
 import WeatherNext from "./WeatherNext";
 import { weatherIcons } from "../Types/types";
 import { unitSelector } from "../features/unit/unitSlice";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import { API } from "../App";
+import axios from "axios";
+import { useLocation } from "react-router-dom";
 
 const WeatherMain = () => {
+  const location = useLocation();
   const [fav, setFav] = useState<boolean>(false);
   const weather = useAppSelector(weatherSelector);
-  const location = useAppSelector(locationSelector);
+  const locationGlobal = useAppSelector(locationSelector);
   const unit = useAppSelector(unitSelector);
+  const dispatch = useAppDispatch();
 
   const handlecheckIfFav = () => {
-    if (location) {
-      if (sessionStorage.getItem(location.Key)) {
+    if (locationGlobal) {
+      if (sessionStorage.getItem(locationGlobal.Key)) {
         setFav(true);
       } else {
-        setFav(false)
+        setFav(false);
       }
     }
   };
 
   const handleSetFav = () => {
-    const favNumber = location.Key
+    const favNumber = locationGlobal.Key;
 
     if (fav) {
-      setFav(false)
-      sessionStorage.removeItem(favNumber)
+      setFav(false);
+      sessionStorage.removeItem(favNumber);
     } else {
-      setFav(true)
-      sessionStorage.setItem(favNumber, location.LocalizedName)
+      setFav(true);
+      sessionStorage.setItem(favNumber, locationGlobal.LocalizedName);
     }
-  }
+  };
+
+  const getWeatherDefault = async () => {
+    try {
+      if (location && location.state && location.state.cityKey) {
+        const { data } = await axios.get(
+          `${API}/currentconditions/v1/${location.state.cityKey}?apikey=%093vMphpay81AU2hjh6QZXGlketl9M62WJ`
+        );
+        console.log(data);
+
+        dispatch(setWeather(data[0]));
+        const response = await axios.get(
+          `${API}/locations/v1/cities/autocomplete?apikey=%093vMphpay81AU2hjh6QZXGlketl9M62WJ&q=${location.state.cityName}&language=en-us`
+        );
+        dispatch(setLocationSelector(response.data[0]));
+      } else {
+        //default is telAviv
+        const { data } = await axios.get(
+          `${API}/currentconditions/v1/215854?apikey=%093vMphpay81AU2hjh6QZXGlketl9M62WJ`
+        );
+        console.log(data);
+        dispatch(setWeather(data[0]));
+
+        const response = await axios.get(
+          `${API}/locations/v1/cities/autocomplete?apikey=%093vMphpay81AU2hjh6QZXGlketl9M62WJ&q=tel&language=en-us`
+        );
+        dispatch(setLocationSelector(response.data[0]));
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
     handlecheckIfFav();
-  }, [location]);
+  }, [locationGlobal]);
+
+  useEffect(() => {
+    getWeatherDefault();
+  }, []);
 
   return (
     <Container>
       <Paper>
-        {weather && location ? (
+        {weather && locationGlobal ? (
           <>
             <Stack direction={"row"} justifyContent={"space-between"}>
               <Stack direction={"row"}>
@@ -58,7 +101,7 @@ const WeatherMain = () => {
                   ></Player>
                 </Box>
                 <Box>
-                  <Typography>{location.LocalizedName}</Typography>
+                  <Typography>{locationGlobal.LocalizedName}</Typography>
                   {unit === "C" ? (
                     <Typography>
                       {weather.Temperature.Metric.Value}{" "}
@@ -72,7 +115,9 @@ const WeatherMain = () => {
                   )}
                 </Box>
               </Stack>
-              <Box onClick={handleSetFav}>{fav ? <FavoriteIcon /> : <FavoriteBorderIcon />}</Box>
+              <Box onClick={handleSetFav}>
+                {fav ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+              </Box>
             </Stack>
             <Stack direction={"row"} justifyContent={"center"}>
               <Typography variant="h2">{weather.WeatherText}</Typography>

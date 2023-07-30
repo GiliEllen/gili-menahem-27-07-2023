@@ -17,18 +17,18 @@ export const UnitSlice = createSlice({
     setUnit: (state, action: PayloadAction<any>) => {
       if (state.value === "C") {
         state.value = "F";
-        sessionStorage.setItem("unit", "F")
+        localStorage.setItem("unit", "F")
       } else {
         state.value = "C"
-        sessionStorage.setItem("unit", "C")
+        localStorage.setItem("unit", "C")
       }
     },
     setUnitFromPrefernce: (state) => {
-      const unit = sessionStorage.getItem("unit")
+      const unit = localStorage.getItem("unit")
       if (unit) {
         state.value = unit
       } else {
-        sessionStorage.setItem("unit", "C")
+        localStorage.setItem("unit", "C")
       }
     }
   },

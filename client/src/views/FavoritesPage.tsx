@@ -22,6 +22,8 @@ const FavoritesPage = () => {
     keysArr.forEach((key, idx) => {
       if (/^\d+$/.test(key)) {
         finalArr.push({ key: key, cityName: valuesArr[idx] });
+      } else {
+        return
       }
     });
 
@@ -35,7 +37,11 @@ const FavoritesPage = () => {
     Promise.all(promiseArray)
       .then((results) => {
         const finalResults = results.map((el, idx) => {
-          return { info: el.data[0], cityName: finalArr[idx].cityName };
+          return {
+            info: el.data[0],
+            cityName: finalArr[idx].cityName,
+            cityKey: keysArr[idx],
+          };
         });
         console.log(finalResults);
         setFavWeatherInfo(finalResults);
@@ -45,8 +51,8 @@ const FavoritesPage = () => {
 
   useEffect(() => {
     // console.log(Object.keys(sessionStorage));
-    // handleGetWeatherForFav()
-    setFavWeatherInfo(fakeFavRes);
+    handleGetWeatherForFav()
+    // setFavWeatherInfo(fakeFavRes);
   }, []);
   return (
     <Container>
@@ -57,7 +63,7 @@ const FavoritesPage = () => {
       <Stack mt={4} direction={"row"} gap={8}>
         {favWeatherInfo.length > 0 ? (
           favWeatherInfo.map((cityInfo) => {
-            return <CityCard key={cityInfo.cityName} cityInfo={cityInfo}/>;
+            return <CityCard key={cityInfo.cityName} cityInfo={cityInfo} />;
           })
         ) : (
           <p>Nothing</p>

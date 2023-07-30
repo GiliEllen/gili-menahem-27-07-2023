@@ -19,12 +19,12 @@ const WeatherNext = () => {
     try {
       if (unit === "C") {
         const { data } = await axios.get(
-          `${API}/forecasts/v1/daily/5day/${location.Key}&metric=true`
+          `${API}/forecasts/v1/daily/5day/${location.Key}?apikey=%093vMphpay81AU2hjh6QZXGlketl9M62WJ&metric=true`
         );
         setNextFiveDays(data.DailyForecasts)
       } else {
         const { data } = await axios.get(
-          `${API}/forecasts/v1/daily/5day/${location.Key}`
+          `${API}/forecasts/v1/daily/5day/${location.Key}?apikey=%093vMphpay81AU2hjh6QZXGlketl9M62WJ`
         );
         setNextFiveDays(data.DailyForecasts)
       }
@@ -35,11 +35,12 @@ const WeatherNext = () => {
   };
 
   useEffect(() => {
-    if(unit === "C") {
-      setNextFiveDays(fakeResTelAvivInfoFiveMetric.DailyForecasts);
-    } else {
-      setNextFiveDays(fakeResTelAvivInfoFiveImpirial.DailyForecasts);
-    }
+    // if(unit === "C") {
+    //   setNextFiveDays(fakeResTelAvivInfoFiveMetric.DailyForecasts);
+    // } else {
+    //   setNextFiveDays(fakeResTelAvivInfoFiveImpirial.DailyForecasts);
+    // }
+    handleGetNextForecast()
   }, [location, unit]);
   return (
     <Stack direction={"row"} justifyContent={"space-evenly"} gap={8}>

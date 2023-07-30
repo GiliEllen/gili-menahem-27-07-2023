@@ -1123,6 +1123,7 @@ export const fakeResTelAvivInfoFiveImpirial = {
 export const fakeFavRes = [
   {
     cityName: "Tokyo",
+    key: "226396",
     info: {
       EpochTime: 1690623480,
       HasPrecipitation: false,
@@ -1142,6 +1143,7 @@ export const fakeFavRes = [
   },
   {
     cityName: "Tel Aviv",
+    key: "215854",
     info: {
       EpochTime: 1690624080,
       HasPrecipitation: false,

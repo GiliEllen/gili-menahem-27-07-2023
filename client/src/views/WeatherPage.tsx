@@ -8,7 +8,7 @@ import UnitPreference from "../components/UnitPreference";
 import { Container, Stack } from "@mui/material";
 
 const WeatherPage = () => {
-  const weather = useAppSelector(weatherSelector);
+  // const weather = useAppSelector(weatherSelector);
   return (
     <div>
       <Header />

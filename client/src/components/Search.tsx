@@ -16,7 +16,7 @@ const Search = () => {
   const [location, setLocation] = useState<string>("");
   const [locationKey, setLocationKey] = useState("");
 
-
+  const locationGlobal = useAppSelector(locationSelector)
 
   const dispatch = useAppDispatch();
 
@@ -25,7 +25,6 @@ const Search = () => {
       const { data } = await axios.get(
         `${API}/locations/v1/cities/autocomplete?apikey=%093vMphpay81AU2hjh6QZXGlketl9M62WJ&q=${location}&language=en-us`
       );
-      console.log(data);
       if (data) {
         setLocations(data);
       }
@@ -36,9 +35,8 @@ const Search = () => {
   const searchWeather = async (locationKeyinfo: string) => {
     try {
       const { data } = await axios.get(
-        `${API}/locations/v1/cities/currentconditions/v1/${locationKey}?apikey=%093vMphpay81AU2hjh6QZXGlketl9M62WJ`
+        `${API}/currentconditions/v1/${locationKey}?apikey=%093vMphpay81AU2hjh6QZXGlketl9M62WJ`
       );
-      console.log(data);
 
       dispatch(setWeather(data));
     } catch (error) {
@@ -46,23 +44,26 @@ const Search = () => {
     }
   };
 
-  useEffect(() => {
-    dispatch(setWeather(fakeResTelAvivInfo[0]));
-  }, []);
-  useEffect(() => {
-    // searchWeather(215854)
-  }, []);
-
   // useEffect(() => {
-  //   search();
-  // }, [location]);
+  //   dispatch(setWeather(fakeResTelAvivInfo[0]));
+  // }, []);
+
+
+
+  useEffect(() => {
+    search();
+  }, [location]);
+  useEffect(() => {
+    if(locationGlobal && locationGlobal.value){
+      searchWeather(locationGlobal.value.Key);
+    }
+  }, [locationGlobal]);
 
   return (
     <Container>
       <form>
         <Autocomplete
           blurOnSelect
-          autoSelect
           disablePortal
           id="location-auto-complete"
           options={locations}
@@ -73,6 +74,7 @@ const Search = () => {
           renderOption={(props, option) => {
             return (
               <Box
+              key={option.LocalizedName}
                 component="li"
                 {...props}
                 onClick={(ev) => {
