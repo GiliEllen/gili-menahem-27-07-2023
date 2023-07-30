@@ -6,12 +6,17 @@ import { API } from "../App";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { setWeather } from "../features/weather/weatherSlice";
 import { LocationType } from "../Types/types";
-import { locationSelector, setLocationSelector } from "../features/location/locationSlice";
+import {
+  locationSelector,
+  setLocationSelector,
+} from "../features/location/locationSlice";
 
 const Search = () => {
   const [locations, setLocations] = useState<LocationType[]>(locationsRes);
   const [location, setLocation] = useState<string>("");
   const [locationKey, setLocationKey] = useState("");
+
+
 
   const dispatch = useAppDispatch();
 
@@ -28,7 +33,7 @@ const Search = () => {
       console.error(error);
     }
   };
-  const searchWeather = async (locationKeyinfo:string) => {
+  const searchWeather = async (locationKeyinfo: string) => {
     try {
       const { data } = await axios.get(
         `${API}/locations/v1/cities/currentconditions/v1/${locationKey}?apikey=%093vMphpay81AU2hjh6QZXGlketl9M62WJ`
@@ -53,10 +58,11 @@ const Search = () => {
   // }, [location]);
 
   return (
-    <Container >
+    <Container>
       <form>
         <Autocomplete
           blurOnSelect
+          autoSelect
           disablePortal
           id="location-auto-complete"
           options={locations}
@@ -72,7 +78,7 @@ const Search = () => {
                 onClick={(ev) => {
                   props.onClick!(ev);
                   setLocation(option.LocalizedName);
-                  dispatch(setLocationSelector(option))
+                  dispatch(setLocationSelector(option));
                   setLocationKey(option.Key);
                 }}
               >
@@ -83,10 +89,20 @@ const Search = () => {
           renderInput={(params) => (
             <TextField
               {...params}
+
               label="Location"
               value={location}
-              onInput={(ev: any) => {
-                setLocation(ev.target.value);
+              onChange={(ev: any) => {
+                const { value } = ev.target;
+                console.log("Input value: ", value);
+
+                const re = /^[A-Za-z]+$/;
+                if (value !== "" && !re.test(value)) {
+                  alert("please write onlt in english")
+                  setLocation("")
+                } else {
+                  setLocation(value);
+                }
               }}
             />
           )}
@@ -98,4 +114,3 @@ const Search = () => {
 };
 
 export default Search;
-
