@@ -87,39 +87,50 @@ const WeatherMain = () => {
   //   getWeatherDefault();
   // }, []);
 
-  useEffect(()=> {
+  useEffect(() => {
     dispatch(setWeather(fakeResTelAvivInfo[0]));
     dispatch(setLocationSelector(fakeTelAviv));
-  },[])
+  }, []);
 
   return (
     <Container>
       <Paper>
         {weather && locationGlobal ? (
           <>
-          <Stack sx={{padding: 8}} direction={"row"} justifyContent={"space-between"}>
-            <Stack>
-              <Typography>{locationGlobal.LocalizedName}</Typography>
-              {unit === "C" ? (
-                    <Typography>
-                      {weather.Temperature.Metric.Value}{" "}
-                      {weather.Temperature.Metric.Unit}
-                    </Typography>
+            <Stack
+              sx={{ padding: 8, position: "relative" }}
+              direction={"row"}
+              justifyContent={"space-between"}
+            >
+              <Stack>
+                <Typography>{locationGlobal.LocalizedName}</Typography>
+                {unit === "C" ? (
+                  <Typography>
+                    {weather.Temperature.Metric.Value}{" "}
+                    {weather.Temperature.Metric.Unit}
+                  </Typography>
+                ) : (
+                  <Typography>
+                    {weather.Temperature.Imperial.Value}{" "}
+                    {weather.Temperature.Imperial.Unit}
+                  </Typography>
+                )}
+                <Typography variant="h2">{weather.WeatherText}</Typography>
+                <Box
+                  sx={{ position: "absolute", right: 50, top: 50, zIndex: 1 }}
+                  onClick={handleSetFav}
+                >
+                  {fav ? (
+                    <FavoriteIcon color="error" fontSize="large" />
                   ) : (
-                    <Typography>
-                      {weather.Temperature.Imperial.Value}{" "}
-                      {weather.Temperature.Imperial.Unit}
-                    </Typography>
+                    <FavoriteBorderIcon fontSize="large" />
                   )}
-                  <Typography variant="h2">{weather.WeatherText}</Typography>
-            </Stack>
-            <Box>
-                  <Player
-                    autoplay
-                    src={weatherIcons[1].icon}
-                  ></Player>
                 </Box>
-          </Stack>
+              </Stack>
+              <Box>
+                <Player autoplay loop src={weatherIcons[1].icon}></Player>
+              </Box>
+            </Stack>
             {/* <Stack direction={"row"} justifyContent={"space-between"}>
               <Stack direction={"row"}>
                 <Box>
@@ -151,7 +162,6 @@ const WeatherMain = () => {
             {/* <Stack direction={"row"} justifyContent={"center"}>
               <Typography variant="h2">{weather.WeatherText}</Typography>
             </Stack> */}
-
           </>
         ) : (
           <Box>

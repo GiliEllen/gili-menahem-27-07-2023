@@ -16,7 +16,6 @@ const WeatherPage = () => {
       <Container sx={{ mt: 10, mb: 2 }}>
         <Search />
       </Container>
-
       <WeatherMain />
       <WeatherNext />
 

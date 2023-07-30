@@ -7,7 +7,7 @@ import { setUnitFromPrefernce, unitSelector } from "./features/unit/unitSlice";
 import { useEffect } from "react";
 import { darkTheme, lightTheme } from "./styles/theme";
 import { ThemeProvider, CssBaseline } from "@mui/material";
-import { modeSelector } from "./features/mode/modeSlice";
+import { modeSelector, setModeFromPrefernce } from "./features/mode/modeSlice";
 import { setViewport } from "./features/viewport/viewportSlice";
 
 export const API = "http://dataservice.accuweather.com";
@@ -19,6 +19,7 @@ function App() {
 
   useEffect(() => {
     dispatch(setUnitFromPrefernce());
+    dispatch(setModeFromPrefernce())
   }, []);
 
   useEffect(() => {
