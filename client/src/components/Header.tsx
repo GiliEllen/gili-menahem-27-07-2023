@@ -127,7 +127,7 @@ const Header = () => {
             onClick: handleDrawerOpen,
           }}
         >
-          <MenuIcon />
+          <MenuIcon sx={{ color: mode === "light" ? "#4f4f4f" : "inherit" }} />
         </IconButton>
 
         <Drawer
