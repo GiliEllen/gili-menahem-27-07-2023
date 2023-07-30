@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "./logo.svg";
 import { Counter } from "./features/counter/Counter";
-import "./App.css";
+import "./App.scss";
 import { Container } from "@mui/material";
 import Header from "./components/Header";
 import { BrowserRouter, Routes, Route } from "react-router-dom";

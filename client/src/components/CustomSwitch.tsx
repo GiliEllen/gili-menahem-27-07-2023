@@ -2,12 +2,13 @@ import React, { FC } from "react";
 import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import { Stack, Switch } from "@mui/material";
-import FahrenheitSVG from "../assets/svg/fahrenheit-meausre-svgrepo-com-white.svg"
-import CelsiusSVG from "../assets/svg/celsius-degrees-symbol-of-temperature-svgrepo-com-white.svg"
+import FahrenheitSVG from "../assets/svg/fahrenheit-meausre-svgrepo-com-white.svg";
+import CelsiusSVG from "../assets/svg/celsius-degrees-symbol-of-temperature-svgrepo-com-white.svg";
 
 interface CustomSwitchProps {
   rightLabel: string;
   leftLabel: string;
+  onClick: CallableFunction;
   imgRight?: string;
   imgLeft?: string;
 }
@@ -15,6 +16,7 @@ interface CustomSwitchProps {
 const CustomSwitch: FC<CustomSwitchProps> = ({
   rightLabel,
   leftLabel,
+  onClick,
   imgRight,
   imgLeft,
 }) => {
@@ -29,8 +31,7 @@ const CustomSwitch: FC<CustomSwitchProps> = ({
       "&.Mui-checked": {
         color: "#fff",
         transform: "translateX(22px)",
-        "& .MuiSwitch-thumb:before": {
-        },
+        "& .MuiSwitch-thumb:before": {},
         "& + .MuiSwitch-track": {
           opacity: 1,
           backgroundColor:
@@ -59,11 +60,23 @@ const CustomSwitch: FC<CustomSwitchProps> = ({
       borderRadius: 20 / 2,
     },
   }));
+
   return (
     <Stack direction={"row"}>
       {leftLabel ? <Typography>{leftLabel}</Typography> : null}
-
-      <MaterialUISwitch sx={{ m: 1 }} defaultChecked aria-label="" />
+      <Switch
+        sx={{
+          "&.MuiSwitch-root .MuiSwitch-switchBase": {
+            color: "#e7e7e7",
+          }, "& .MuiSwitch-switchBase.Mui-checked+.MuiSwitch-track": {
+            backgroundColor: '#5e5e5e'
+          },
+        }}
+        defaultChecked
+        onClick={(ev) => {
+          onClick(ev);
+        }}
+      />
       {rightLabel ? <Typography>{rightLabel}</Typography> : null}
     </Stack>
   );
