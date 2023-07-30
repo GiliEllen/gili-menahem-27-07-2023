@@ -51,8 +51,8 @@ const FavoritesPage = () => {
 
   useEffect(() => {
     // console.log(Object.keys(sessionStorage));
-    handleGetWeatherForFav()
-    // setFavWeatherInfo(fakeFavRes);
+    // handleGetWeatherForFav()
+    setFavWeatherInfo(fakeFavRes);
   }, []);
   return (
     <Container>

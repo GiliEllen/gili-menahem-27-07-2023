@@ -16,6 +16,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { API } from "../App";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
+import { fakeResTelAvivInfo, fakeTelAviv } from "../util/fakeResponse";
 
 const WeatherMain = () => {
   const location = useLocation();
@@ -82,9 +83,14 @@ const WeatherMain = () => {
     handlecheckIfFav();
   }, [locationGlobal]);
 
-  useEffect(() => {
-    getWeatherDefault();
-  }, []);
+  // useEffect(() => {
+  //   getWeatherDefault();
+  // }, []);
+
+  useEffect(()=> {
+    dispatch(setWeather(fakeResTelAvivInfo[0]));
+    dispatch(setLocationSelector(fakeTelAviv));
+  },[])
 
   return (
     <Container>

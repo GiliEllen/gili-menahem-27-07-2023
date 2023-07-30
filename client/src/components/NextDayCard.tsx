@@ -6,13 +6,12 @@ import { useAppSelector } from "../app/hooks";
 import { unitSelector } from "../features/unit/unitSlice";
 
 interface NextDayCard {
-  dayIdx?: number,
-  day?: any,
-  cityInfo?: any;
+  dayIdx: number,
+  day: any,
 }
 
-const NextDayCard = ({ dayIdx, day, cityInfo }: any) => {
-  const [ cardType, setCardType] = useState()
+const NextDayCard = ({ dayIdx, day }: any) => {
+
   const [weekday, setWeekDay] = useState("");
   const weekdays = [
     "Sunday",
@@ -52,13 +51,8 @@ const NextDayCard = ({ dayIdx, day, cityInfo }: any) => {
   }
 
   useEffect(() => {
-    if (dayIdx && day || dayIdx == 0 && day) {
       calculateDay();
       calculateDate()
-    } else if (cityInfo) {
-
-    }
-   
   }, []);
   return (
     <Paper>

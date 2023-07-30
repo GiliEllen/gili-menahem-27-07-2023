@@ -12,7 +12,7 @@ import {
 } from "../features/location/locationSlice";
 
 const Search = () => {
-  const [locations, setLocations] = useState<LocationType[]>(locationsRes);
+  const [locations, setLocations] = useState<LocationType[]>([]);
   const [location, setLocation] = useState<string>("");
   const [locationKey, setLocationKey] = useState("");
 
@@ -44,20 +44,21 @@ const Search = () => {
     }
   };
 
+  useEffect(() => {
+    dispatch(setWeather(fakeResTelAvivInfo[0]));
+  }, []);
+
+
+
   // useEffect(() => {
-  //   dispatch(setWeather(fakeResTelAvivInfo[0]));
-  // }, []);
-
-
-
-  useEffect(() => {
-    search();
-  }, [location]);
-  useEffect(() => {
-    if(locationGlobal && locationGlobal.value){
-      searchWeather(locationGlobal.value.Key);
-    }
-  }, [locationGlobal]);
+  //   search();
+  // }, [location]);
+  
+  // useEffect(() => {
+  //   if(locationGlobal && locationGlobal.value){
+  //     searchWeather(locationGlobal.value.Key);
+  //   }
+  // }, [locationGlobal]);
 
   return (
     <Container>
