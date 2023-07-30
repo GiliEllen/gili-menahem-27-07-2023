@@ -58,7 +58,6 @@ const NextDayCard = ({ dayIdx, day }: any) => {
     <Paper>
       <Stack>
       <Player style={{width: "100px"}} autoplay loop src={findIcon()}></Player>
-
         <Typography>{weekday} {calculateDate()}</Typography>
         <Typography>{day.Day.IconPhrase}</Typography>
         <Typography>

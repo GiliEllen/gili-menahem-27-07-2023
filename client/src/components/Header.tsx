@@ -82,8 +82,12 @@ const Header = () => {
               dispatch(setUnit(ev.target.value));
             }}
           >
-            <ToggleButton value={"C"}>C</ToggleButton>
-            <ToggleButton value={"F"}>F</ToggleButton>
+            <ToggleButton disabled={unit === "C" ? true : false} value={"C"}>
+              C
+            </ToggleButton>
+            <ToggleButton disabled={unit === "F" ? true : false} value={"F"}>
+              F
+            </ToggleButton>
           </ToggleButtonGroup>
         </Box>
         <Box>
@@ -94,10 +98,16 @@ const Header = () => {
               dispatch(setMode(ev.target.value));
             }}
           >
-            <ToggleButton value={"dark"}>
+            <ToggleButton
+              disabled={mode === "dark" ? true : false}
+              value={"dark"}
+            >
               <DarkModeIcon />
             </ToggleButton>
-            <ToggleButton value={"light"}>
+            <ToggleButton
+              disabled={mode === "light" ? true : false}
+              value={"light"}
+            >
               <LightModeIcon />
             </ToggleButton>
           </ToggleButtonGroup>
@@ -202,16 +212,16 @@ const Header = () => {
   };
 
   return (
-    <header>
-      <AppBar>{mobileView ? displayMobile() : displayDesktop()}</AppBar>
+    <Box>
+      <AppBar sx={{bgcolor: mode === "light" ? "#ffffff" : "inherit"}}>{mobileView ? displayMobile() : displayDesktop()}</AppBar>
 
       {!mobileView && displaySettings ? (
         <Paper
           sx={{
             position: "absolute",
-            width: "20vw",
-            height: "20vh",
+            minHeight: "25vh",
             top: "56px",
+            right: 0,
             zIndex: 2,
             padding: 2,
           }}
@@ -222,7 +232,7 @@ const Header = () => {
           {settingsPrefernce()}
         </Paper>
       ) : null}
-    </header>
+    </Box>
   );
 };
 

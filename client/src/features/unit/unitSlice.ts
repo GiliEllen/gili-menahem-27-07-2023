@@ -2,11 +2,11 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
 
 export interface UnitState {
-  value: "C" | "F" | string
+  value: "C" | "F" | string;
 }
 
 const initialState: UnitState = {
-  value: "C"
+  value: "C",
 };
 
 export const UnitSlice = createSlice({
@@ -15,22 +15,22 @@ export const UnitSlice = createSlice({
 
   reducers: {
     setUnit: (state, action: PayloadAction<any>) => {
-      if (state.value === "C") {
+      if (action.payload === "C") {
+        state.value = "C";
+        localStorage.setItem("unit", "C");
+      } else if (action.payload === "F") {
         state.value = "F";
-        localStorage.setItem("unit", "F")
-      } else {
-        state.value = "C"
-        localStorage.setItem("unit", "C")
+        localStorage.setItem("unit", "F");
       }
     },
     setUnitFromPrefernce: (state) => {
-      const unit = localStorage.getItem("unit")
+      const unit = localStorage.getItem("unit");
       if (unit) {
-        state.value = unit
+        state.value = unit;
       } else {
-        localStorage.setItem("unit", "C")
+        localStorage.setItem("unit", "C");
       }
-    }
+    },
   },
 });
 
