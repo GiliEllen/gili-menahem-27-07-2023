@@ -1,24 +1,24 @@
-import * as Sunny from "../assets/animations/sunny.json";
-import * as PartlyCloudy from "../assets/animations/partly cloudy.json";
-import * as MostlySunny from "../assets/animations/mostly sunny.json";
-import * as Mist from "../assets/animations/mist.json";
-import * as CloudyNight from "../assets/animations/cloudy night.json";
-import * as PartlyCloudyNight from "../assets/animations/partly cloudy night.json";
-import * as Night from "../assets/animations/night.json";
-import * as PartlyShower from "../assets/animations/partly shower.json";
-import * as RainyNight from "../assets/animations/rainy night.json";
-import * as SnowDay from "../assets/animations/snow day.json";
-import * as SnowNight from "../assets/animations/snow night.json";
-import * as Snow from "../assets/animations/snow.json";
-import * as StormAndShowers from "../assets/animations/storm and showers.json";
-import * as Storm from "../assets/animations/storm.json";
-import * as Thunder from "../assets/animations/thunder.json";
-import * as Windy from "../assets/animations/windy.json";
-import * as Foggy from "../assets/animations/foggy.json";
-import * as Rain from "../assets/animations/rain.json";
-import * as DarkerCloudes from "../assets/animations/darker-clouds.json";
-import * as DarkWindy from "../assets/animations/wind dark.json";
-import * as Ice from "../assets/animations/ice.json";
+import * as Sunny from "../assets/animations/json/sunny.json";
+import * as PartlyCloudy from "../assets/animations/json/partly cloudy.json";
+import * as MostlySunny from "../assets/animations/json/mostly sunny.json";
+import * as Mist from "../assets/animations/json/mist.json";
+import * as CloudyNight from "../assets/animations/json/cloudy night.json";
+import * as PartlyCloudyNight from "../assets/animations/json/partly cloudy night.json";
+import * as Night from "../assets/animations/json/night.json";
+import * as PartlyShower from "../assets/animations/json/partly shower.json";
+import * as RainyNight from "../assets/animations/json/rainy night.json";
+import * as SnowDay from "../assets/animations/json/snow day.json";
+import * as SnowNight from "../assets/animations/json/snow night.json";
+import * as Snow from "../assets/animations/json/snow.json";
+import * as StormAndShowers from "../assets/animations/json/storm and showers.json";
+import * as Storm from "../assets/animations/json/storm.json";
+import * as Thunder from "../assets/animations/json/thunder.json";
+import * as Windy from "../assets/animations/json/windy.json";
+import * as Foggy from "../assets/animations/json/foggy.json";
+import * as Rain from "../assets/animations/json/rain.json";
+import * as DarkerCloudes from "../assets/animations/json/darker-clouds.json";
+import * as DarkWindy from "../assets/animations/json/wind dark.json";
+import * as Ice from "../assets/animations/json/ice.json";
 
 
 

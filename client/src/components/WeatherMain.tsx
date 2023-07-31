@@ -3,7 +3,6 @@ import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { setWeather, weatherSelector } from "../features/weather/weatherSlice";
 import { Box, Container, Paper, Stack, Typography } from "@mui/material";
 import { Player } from "@lottiefiles/react-lottie-player";
-import * as Sunny from "../assets/animations/sunny.json";
 import {
   locationSelector,
   setLocationSelector,

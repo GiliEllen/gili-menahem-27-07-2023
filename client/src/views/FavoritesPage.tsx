@@ -7,10 +7,12 @@ import { fakeFavRes } from "../util/fakeResponse";
 import CityCard from "../components/CityCard";
 import { useAppSelector } from "../app/hooks";
 import { viewPortSelector } from "../features/viewport/viewportSlice";
+import { motion } from 'framer-motion';
+import { fadeIn } from "../assets/animations/framer-motion/animation";
 
 const FavoritesPage = () => {
   const [favWeatherInfo, setFavWeatherInfo] = useState<any[]>([]);
-  const view = useAppSelector(viewPortSelector)
+  const view = useAppSelector(viewPortSelector);
   const handleGetWeatherForFav = () => {
     let keysArr = Object.keys(sessionStorage);
     let valuesArr = Object.values(sessionStorage);
@@ -25,7 +27,7 @@ const FavoritesPage = () => {
       if (/^\d+$/.test(key)) {
         finalArr.push({ key: key, cityName: valuesArr[idx] });
       } else {
-        return
+        return;
       }
     });
 
@@ -57,21 +59,27 @@ const FavoritesPage = () => {
     setFavWeatherInfo(fakeFavRes);
   }, []);
   return (
-    <Container>
-      <Header />
-      <Typography mt={12} variant="h4">
-        My favorite Cities
-      </Typography>
-      <Stack mt={4} direction={view ? "column" : "row"} gap={8}>
-        {favWeatherInfo.length > 0 ? (
-          favWeatherInfo.map((cityInfo) => {
-            return <CityCard key={cityInfo.cityName} cityInfo={cityInfo} />;
-          })
-        ) : (
-          <p>Nothing</p>
-        )}
-      </Stack>
-    </Container>
+    <motion.div
+      intial={{ opacity: 0 }}
+      variants={fadeIn("right", "spring", 0, 1)}
+      initial="hidden"
+      animate="visible"
+    >
+      <Container>
+        <Typography mt={12} variant="h4">
+          My favorite Cities
+        </Typography>
+        <Stack mt={4} direction={view ? "column" : "row"} gap={8}>
+          {favWeatherInfo.length > 0 ? (
+            favWeatherInfo.map((cityInfo) => {
+              return <CityCard key={cityInfo.cityName} cityInfo={cityInfo} />;
+            })
+          ) : (
+            <p>Nothing</p>
+          )}
+        </Stack>
+      </Container>
+    </motion.div>
   );
 };
 
