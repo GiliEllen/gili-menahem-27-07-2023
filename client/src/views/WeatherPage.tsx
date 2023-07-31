@@ -1,6 +1,6 @@
 import Search from "../components/Search";
 import WeatherMain from "../components/WeatherMain";
-import { Container } from "@mui/material";
+import { Alert, Container, Snackbar } from "@mui/material";
 import WeatherNext from "../components/WeatherNext";
 import { motion } from "framer-motion";
 import { fadeIn } from "./../assets/animations/framer-motion/animation";
@@ -19,6 +19,7 @@ const WeatherPage = () => {
         <WeatherMain />
         <WeatherNext />
       </Container>
+
     </motion.div>
   );
 };

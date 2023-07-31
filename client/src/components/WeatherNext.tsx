@@ -7,14 +7,17 @@ import {
   fakeResTelAvivInfoFiveImpirial,
   fakeResTelAvivInfoFiveMetric,
 } from "../util/fakeResponse";
-import { Container } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import NextDayCard from "./NextDayCard";
 import { Stack } from "@mui/material";
 import { unitSelector } from "../features/unit/unitSlice";
 import { viewPortSelector } from "../features/viewport/viewportSlice";
+import CustomMuiToast from "./CustomMuiToast";
 
 const WeatherNext = () => {
   const [nextFiveDays, setNextFiveDays] = useState<any[]>([]);
+  const [errorDis, setErrorDis] = useState<boolean>(false);
+  const [errorCon, setErrorCon] = useState<string>("");
 
   const location = useAppSelector(locationSelector);
   const unit = useAppSelector(unitSelector);
@@ -33,18 +36,23 @@ const WeatherNext = () => {
         );
         setNextFiveDays(data.DailyForecasts);
       }
-    } catch (error) {
-      console.error(error);
+    } catch (error:any) {
+      setErrorDis(true)
+      setErrorCon(`${error.response.data.Code} ${error.response.data.Message}`)
+      setTimeout(() => {
+        setErrorCon("")
+        setErrorDis(false)
+      }, 3000)
     }
   };
 
   useEffect(() => {
-    // if (unit === "C") {
-    //   setNextFiveDays(fakeResTelAvivInfoFiveMetric.DailyForecasts);
-    // } else {
-    //   setNextFiveDays(fakeResTelAvivInfoFiveImpirial.DailyForecasts);
-    // }
-    handleGetNextForecast()
+    if (unit === "C") {
+      setNextFiveDays(fakeResTelAvivInfoFiveMetric.DailyForecasts);
+    } else {
+      setNextFiveDays(fakeResTelAvivInfoFiveImpirial.DailyForecasts);
+    }
+    // handleGetNextForecast()
   }, [location, unit]);
   return (
     <Container>
@@ -54,9 +62,10 @@ const WeatherNext = () => {
             return <NextDayCard dayIdx={idx} day={day} />;
           })
         ) : (
-          <p>No waether</p>
+          <Typography>No Weather Found</Typography>
         )}
       </Stack>
+      <CustomMuiToast errorCon={errorCon} errorDis={errorDis}/>
     </Container>
   );
 };

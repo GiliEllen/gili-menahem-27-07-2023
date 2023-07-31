@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { setWeather, weatherSelector } from "../features/weather/weatherSlice";
-import { Box, Container, Paper, Stack, Typography } from "@mui/material";
+import { Alert, Box, Container, Paper, Snackbar, Stack, Typography } from "@mui/material";
 import { Player } from "@lottiefiles/react-lottie-player";
 import {
   locationSelector,
@@ -15,10 +15,14 @@ import { API } from "../App";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import { fakeResTelAvivInfo, fakeTelAviv } from "../util/fakeResponse";
+import CustomMuiToast from "./CustomMuiToast";
 
 const WeatherMain = () => {
   const location = useLocation();
   const [fav, setFav] = useState<boolean>(false);
+  const [errorDis, setErrorDis] = useState<boolean>(false);
+  const [errorCon, setErrorCon] = useState<string>("");
+
   const weather = useAppSelector(weatherSelector);
   const locationGlobal = useAppSelector(locationSelector);
   const unit = useAppSelector(unitSelector);
@@ -52,7 +56,6 @@ const WeatherMain = () => {
         const { data } = await axios.get(
           `${API}/currentconditions/v1/${location.state.cityKey}?apikey=%093vMphpay81AU2hjh6QZXGlketl9M62WJ`
         );
-        console.log(data);
 
         dispatch(setWeather(data[0]));
         const response = await axios.get(
@@ -64,7 +67,6 @@ const WeatherMain = () => {
         const { data } = await axios.get(
           `${API}/currentconditions/v1/215854?apikey=%093vMphpay81AU2hjh6QZXGlketl9M62WJ`
         );
-        console.log(data);
         dispatch(setWeather(data[0]));
 
         const response = await axios.get(
@@ -72,71 +74,79 @@ const WeatherMain = () => {
         );
         dispatch(setLocationSelector(response.data[0]));
       }
-    } catch (error) {
-      console.error(error);
+    } catch (error:any) {
+      setErrorDis(true)
+      setErrorCon(`${error.response.data.Code} ${error.response.data.Message}`)
+      setTimeout(() => {
+        setErrorCon("")
+        setErrorDis(false)
+      }, 3000)
     }
   };
 
-  useEffect(() => {
-    handlecheckIfFav();
-  }, [locationGlobal]);
+  // useEffect(() => {
+  //   handlecheckIfFav();
+  // }, [locationGlobal]);
 
   useEffect(() => {
-    getWeatherDefault();
+    // getWeatherDefault();
   }, []);
 
-  // useEffect(() => {
-  //   dispatch(setWeather(fakeResTelAvivInfo[0]));
-  //   dispatch(setLocationSelector(fakeTelAviv));
-  // }, []);
+  useEffect(() => {
+    dispatch(setWeather(fakeResTelAvivInfo[0]));
+    dispatch(setLocationSelector(fakeTelAviv));
+  }, []);
 
   return (
-    <Container>
-      <Paper>
-        {weather && locationGlobal ? (
-          <>
-            <Stack
-              sx={{ padding: 8, position: "relative" }}
-              direction={"row"}
-              justifyContent={"space-between"}
-            >
-              <Stack>
-                <Typography>{locationGlobal.LocalizedName}</Typography>
-                {unit === "C" ? (
-                  <Typography>
-                    {weather.Temperature.Metric.Value}{" "}
-                    {weather.Temperature.Metric.Unit}
-                  </Typography>
-                ) : (
-                  <Typography>
-                    {weather.Temperature.Imperial.Value}{" "}
-                    {weather.Temperature.Imperial.Unit}
-                  </Typography>
-                )}
-                <Typography variant="h2">{weather.WeatherText}</Typography>
-                <Box
-                  sx={{ position: "absolute", right: 50, top: 50, zIndex: 1 }}
-                  onClick={handleSetFav}
-                >
-                  {fav ? (
-                    <FavoriteIcon color="error" fontSize="large" />
+    <>
+      <Container>
+        <Paper>
+          {weather && locationGlobal ? (
+            <>
+              <Stack
+                sx={{ padding: 8, position: "relative" }}
+                direction={"row"}
+                justifyContent={"space-between"}
+              >
+                <Stack>
+                  <Typography>{locationGlobal.LocalizedName}</Typography>
+                  {unit === "C" ? (
+                    <Typography>
+                      {weather.Temperature.Metric.Value}{" "}
+                      {weather.Temperature.Metric.Unit}
+                    </Typography>
                   ) : (
-                    <FavoriteBorderIcon fontSize="large" />
+                    <Typography>
+                      {weather.Temperature.Imperial.Value}{" "}
+                      {weather.Temperature.Imperial.Unit}
+                    </Typography>
                   )}
+                  <Typography variant="h2">{weather.WeatherText}</Typography>
+                  <Box
+                    sx={{ position: "absolute", right: 50, top: 50, zIndex: 1 }}
+                    onClick={handleSetFav}
+                  >
+                    {fav ? (
+                      <FavoriteIcon color="error" fontSize="large" />
+                    ) : (
+                      <FavoriteBorderIcon fontSize="large" />
+                    )}
+                  </Box>
+                </Stack>
+                <Box>
+                  <Player autoplay loop src={weatherIcons[1].icon}></Player>
                 </Box>
               </Stack>
-              <Box>
-                <Player autoplay loop src={weatherIcons[1].icon}></Player>
-              </Box>
-            </Stack>
-          </>
-        ) : (
-          <Box>
-            <Typography>No Weather yet</Typography>
-          </Box>
-        )}
-      </Paper>
-    </Container>
+            </>
+          ) : (
+            <Box>
+              <Typography>No Weather yet</Typography>
+            </Box>
+          )}
+        </Paper>
+      </Container>
+      <CustomMuiToast errorDis={errorDis} errorCon={errorCon}/>
+    </>
   );
 };
 

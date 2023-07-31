@@ -11,14 +11,17 @@ import {
   setLocationSelector,
 } from "../features/location/locationSlice";
 import { modeSelector } from "../features/mode/modeSlice";
+import CustomMuiToast from "./CustomMuiToast";
 
 const Search = () => {
   const [locations, setLocations] = useState<LocationType[]>([]);
   const [location, setLocation] = useState<string>("");
   const [locationKey, setLocationKey] = useState("");
+  const [errorDis, setErrorDis] = useState<boolean>(false);
+  const [errorCon, setErrorCon] = useState<string>("");
 
   const locationGlobal = useAppSelector(locationSelector);
-  const mode = useAppSelector(modeSelector)
+  const mode = useAppSelector(modeSelector);
 
   const dispatch = useAppDispatch();
 
@@ -30,29 +33,39 @@ const Search = () => {
       if (data) {
         setLocations(data);
       }
-    } catch (error) {
-      console.error(error);
+    } catch (error:any) {
+      setErrorDis(true)
+      setErrorCon(`${error.message}`)
+      setTimeout(() => {
+        setErrorCon("")
+        setErrorDis(false)
+      }, 3000)
     }
   };
   const searchWeather = async (locationKeyinfo: string) => {
     try {
       const { data } = await axios.get(
-        `${API}/currentconditions/v1/${locationKey}?apikey=%093vMphpay81AU2hjh6QZXGlketl9M62WJ`
+        `${API}/currentconditions/v1/${locationKeyinfo}?apikey=%093vMphpay81AU2hjh6QZXGlketl9M62WJ`
       );
 
       dispatch(setWeather(data));
-    } catch (error) {
-      console.error(error);
+    } catch (error:any) {
+      setErrorDis(true)
+      setErrorCon(`${error.message}`)
+      setTimeout(() => {
+        setErrorCon("")
+        setErrorDis(false)
+      }, 3000)
     }
   };
 
-  useEffect(() => {
-    dispatch(setWeather(fakeResTelAvivInfo[0]));
-  }, []);
+  // useEffect(() => {
+  //   dispatch(setWeather(fakeResTelAvivInfo[0]));
+  // }, []);
 
-  useEffect(() => {
-    search();
-  }, [location]);
+  // useEffect(() => {
+  //   search();
+  // }, [location]);
 
   useEffect(() => {
     if(locationGlobal && locationGlobal.value){
@@ -106,15 +119,21 @@ const Search = () => {
                   setLocation(value);
                 }
               }}
-              sx={{"&.MuiTextField-root": mode === "light" ? {
-                backgroundColor: "rgb(232, 244, 255)"
-              } : {
-                backgroundColor: "rgb(52, 69, 91)"
-              }}}
+              sx={{
+                "&.MuiTextField-root":
+                  mode === "light"
+                    ? {
+                        backgroundColor: "rgb(232, 244, 255)",
+                      }
+                    : {
+                        backgroundColor: "rgb(52, 69, 91)",
+                      },
+              }}
             />
           )}
         />
       </form>
+      <CustomMuiToast errorCon={errorCon} errorDis={errorDis} />
     </Paper>
   );
 };
