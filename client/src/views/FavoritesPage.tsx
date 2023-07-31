@@ -48,7 +48,6 @@ const FavoritesPage = () => {
             cityKey: keysArr[idx],
           };
         });
-        console.log(finalResults);
         setFavWeatherInfo(finalResults);
       })
       .catch((error) => {

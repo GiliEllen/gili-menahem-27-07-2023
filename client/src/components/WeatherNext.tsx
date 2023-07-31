@@ -54,7 +54,7 @@ const WeatherNext = () => {
       <Stack mt={2} direction={view ? "column" : "row"} justifyContent={"space-between"} spacing={view ? 2 : 0}>
         {nextFiveDays.length > 0 ? (
           nextFiveDays.map((day, idx) => {
-            return <NextDayCard dayIdx={idx} day={day} />;
+            return <NextDayCard key={`${idx}day`} dayIdx={idx} day={day} />;
           })
         ) : (
           <Typography>No Weather Found</Typography>
