@@ -1,9 +1,7 @@
 import "./App.scss";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import WeatherPage from "./views/WeatherPage";
-import FavoritesPage from "./views/FavoritesPage";
+import { BrowserRouter } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
-import { setUnitFromPrefernce, unitSelector } from "./features/unit/unitSlice";
+import { setUnitFromPrefernce } from "./features/unit/unitSlice";
 import { useEffect } from "react";
 import { darkTheme, lightTheme } from "./styles/theme";
 import { ThemeProvider, CssBaseline } from "@mui/material";
@@ -21,7 +19,7 @@ function App() {
 
   useEffect(() => {
     dispatch(setUnitFromPrefernce());
-    dispatch(setModeFromPrefernce())
+    dispatch(setModeFromPrefernce());
   }, []);
 
   useEffect(() => {
@@ -45,12 +43,8 @@ function App() {
       <CssBaseline />
 
       <BrowserRouter>
-            <Header />
-        {/* <Routes>
-          <Route path="/" element={<WeatherPage />} />
-          <Route path="/favorites" element={<FavoritesPage />} />
-        </Routes> */}
-        <AnimatedRoutes/>
+        <Header />
+        <AnimatedRoutes />
       </BrowserRouter>
     </ThemeProvider>
   );

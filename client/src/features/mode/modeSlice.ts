@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
 
 export interface ModeState {
@@ -37,8 +37,5 @@ export const Modeslice = createSlice({
 export const { setMode, setModeFromPrefernce } = Modeslice.actions;
 
 export const modeSelector = (state: RootState) => state.mode.value;
-
-// We can also write thunks by hand, which may contain both sync and async logic.
-// Here's an example of conditionally dispatching actions based on current state.
 
 export default Modeslice.reducer;

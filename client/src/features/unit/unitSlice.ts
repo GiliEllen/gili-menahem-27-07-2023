@@ -14,7 +14,7 @@ export const UnitSlice = createSlice({
   initialState,
 
   reducers: {
-    setUnit: (state, action: PayloadAction<any>) => {
+    setUnit: (state, action: PayloadAction<string>) => {
       if (action.payload === "C") {
         state.value = "C";
         localStorage.setItem("unit", "C");

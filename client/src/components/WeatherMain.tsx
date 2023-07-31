@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { setWeather, weatherSelector } from "../features/weather/weatherSlice";
 import { Box, Container, Paper, Stack, Typography } from "@mui/material";
@@ -7,7 +7,6 @@ import {
   locationSelector,
   setLocationSelector,
 } from "../features/location/locationSlice";
-import WeatherNext from "./WeatherNext";
 import { weatherIcons } from "../Types/types";
 import { unitSelector } from "../features/unit/unitSlice";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";

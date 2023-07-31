@@ -24,7 +24,4 @@ export const { setViewport } = viewportSlice.actions;
 
 export const viewPortSelector = (state: RootState) => state.viewport.value;
 
-// We can also write thunks by hand, which may contain both sync and async logic.
-// Here's an example of conditionally dispatching actions based on current state.
-
 export default viewportSlice.reducer;

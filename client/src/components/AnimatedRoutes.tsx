@@ -1,4 +1,3 @@
-import React from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import WeatherPage from "../views/WeatherPage";
 import FavoritesPage from "../views/FavoritesPage";

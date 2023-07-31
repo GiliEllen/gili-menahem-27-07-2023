@@ -1,6 +1,5 @@
 import { Container, Stack, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import Header from "../components/Header";
 import axios from "axios";
 import { API } from "../App";
 import { fakeFavRes } from "../util/fakeResponse";
@@ -13,6 +12,7 @@ import { fadeIn } from "../assets/animations/framer-motion/animation";
 const FavoritesPage = () => {
   const [favWeatherInfo, setFavWeatherInfo] = useState<any[]>([]);
   const view = useAppSelector(viewPortSelector);
+
   const handleGetWeatherForFav = () => {
     let keysArr = Object.keys(sessionStorage);
     let valuesArr = Object.values(sessionStorage);
@@ -58,6 +58,7 @@ const FavoritesPage = () => {
     // handleGetWeatherForFav()
     setFavWeatherInfo(fakeFavRes);
   }, []);
+  
   return (
     <motion.div
       intial={{ opacity: 0 }}
