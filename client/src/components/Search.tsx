@@ -70,8 +70,9 @@ const Search = () => {
           options={locations}
           sx={{ width: "100%" }}
           getOptionLabel={(option) => {
-            return option.LocalizedName;
+            return `${option.LocalizedName} (${option.Country.ID})`;
           }}
+          clearOnBlur
           renderOption={(props, option) => {
             return (
               <Box
@@ -85,7 +86,7 @@ const Search = () => {
                   setLocationKey(option.Key);
                 }}
               >
-                {option.LocalizedName}
+                {`${option.LocalizedName} (${option.Country.ID})`}
               </Box>
             );
           }}
