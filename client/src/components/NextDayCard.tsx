@@ -5,6 +5,7 @@ import { Player } from "@lottiefiles/react-lottie-player";
 import { useAppSelector } from "../app/hooks";
 import { unitSelector } from "../features/unit/unitSlice";
 import { viewPortSelector } from "../features/viewport/viewportSlice";
+import {motion} from "framer-motion"
 
 interface NextDayCard {
   dayIdx: number;
@@ -63,21 +64,29 @@ const NextDayCard = ({ dayIdx, day }: any) => {
         alignItems={"center"}
         justifyContent={"space-between"}
       >
-        <Player
-          style={{ width: "100px" }}
-          autoplay
-          loop
-          src={findIcon()}
-        ></Player>
-        <Box>
-          <Typography>
-            {weekday} {calculateDate()}
-          </Typography>
-          <Typography>{day.Day.IconPhrase}</Typography>
+        <Typography variant="h5">{weekday}</Typography>
+        <Typography>{calculateDate()}</Typography>
+        <Box style={{width :"100px"}}>
+          <Player
+            style={{ width: "100%" }}
+            autoplay
+            loop
+            src={findIcon()}
+          ></Player>
         </Box>
 
+        <Typography variant="h5">{day.Day.IconPhrase}</Typography>
+
         <Typography>
-          {calculateAvreageTemp()} {day.Temperature.Minimum.Unit}{" "}
+          Average: {calculateAvreageTemp()} {day.Temperature.Minimum.Unit}°{" "}
+        </Typography>
+        <Typography>
+          <span className="large_font">
+            {day.Temperature.Maximum.Value}
+            {day.Temperature.Maximum.Unit}°
+          </span>
+          /{day.Temperature.Minimum.Value}
+          {day.Temperature.Minimum.Unit}°
         </Typography>
       </Stack>
     </Paper>

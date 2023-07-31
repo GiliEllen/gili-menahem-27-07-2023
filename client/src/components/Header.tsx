@@ -16,7 +16,6 @@ import {
   Box,
 } from "@mui/material";
 import { useState } from "react";
-import { useEffect } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import { NavLink as RouterLink } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
@@ -68,10 +67,10 @@ const Header = () => {
             }}
           >
             <ToggleButton disabled={unit === "C" ? true : false} value={"C"}>
-              C
+              C°
             </ToggleButton>
             <ToggleButton disabled={unit === "F" ? true : false} value={"F"}>
-              F
+              F°
             </ToggleButton>
           </ToggleButtonGroup>
         </Box>

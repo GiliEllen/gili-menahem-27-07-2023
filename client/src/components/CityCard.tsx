@@ -39,10 +39,10 @@ const CityCard: FC<CityCardProps> = ({ cityInfo }) => {
       <Typography>{cityInfo.info.WeatherText}</Typography>
       {unit === "C" ? (
         <Typography>
-          {`${cityInfo.info.Temperature.Metric.Value} C`}{" "}
+          {`${cityInfo.info.Temperature.Metric.Value} C°`}{" "}
         </Typography>
       ) : (
-        <Typography>{`${cityInfo.info.Temperature.Imperial.Value} F`}</Typography>
+        <Typography>{`${cityInfo.info.Temperature.Imperial.Value} F°`}</Typography>
       )}
       {/* {cityInfo.info} */}
     </Paper>
