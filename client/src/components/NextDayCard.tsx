@@ -3,9 +3,7 @@ import { useEffect, useState } from "react";
 import { weatherIcons } from "../Types/types";
 import { Player } from "@lottiefiles/react-lottie-player";
 import { useAppSelector } from "../app/hooks";
-import { unitSelector } from "../features/unit/unitSlice";
 import { viewPortSelector } from "../features/viewport/viewportSlice";
-import {motion} from "framer-motion"
 
 interface NextDayCard {
   dayIdx: number;
@@ -63,10 +61,16 @@ const NextDayCard = ({ dayIdx, day }: any) => {
         direction={view ? "row" : "column"}
         alignItems={"center"}
         justifyContent={"space-between"}
+        textAlign={"center"}
       >
-        <Typography variant="h5">{weekday}</Typography>
-        <Typography>{calculateDate()}</Typography>
-        <Box style={{width :"100px"}}>
+        <Stack justifyContent={"center"} alignItems={"center"}>
+          <Typography variant="h5">
+            {view ? weekday.slice(0, 3) : weekday}
+          </Typography>
+          <Typography>{calculateDate()}</Typography>
+        </Stack>
+
+        <Box style={{ width: "100px" }}>
           <Player
             style={{ width: "100%" }}
             autoplay
@@ -76,10 +80,12 @@ const NextDayCard = ({ dayIdx, day }: any) => {
         </Box>
 
         <Typography variant="h5">{day.Day.IconPhrase}</Typography>
+        {!view ? (
+          <Typography>
+            Average: {calculateAvreageTemp()} {day.Temperature.Minimum.Unit}°{" "}
+          </Typography>
+        ) : null}
 
-        <Typography>
-          Average: {calculateAvreageTemp()} {day.Temperature.Minimum.Unit}°{" "}
-        </Typography>
         <Typography>
           <span className="large_font">
             {day.Temperature.Maximum.Value}
