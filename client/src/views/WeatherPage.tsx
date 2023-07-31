@@ -8,7 +8,6 @@ import { fadeIn } from "./../assets/animations/framer-motion/animation";
 const WeatherPage = () => {
   return (
     <motion.div
-      intial={{ opacity: 0 }}
       variants={fadeIn("right", "spring", 0, 1)}
       initial="hidden"
       animate="visible"

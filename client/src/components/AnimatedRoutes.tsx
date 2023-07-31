@@ -4,14 +4,14 @@ import FavoritesPage from "../views/FavoritesPage";
 import { AnimatePresence } from "framer-motion";
 
 const AnimatedRoutes = () => {
-  const location = useLocation();
+  // const location = useLocation();
   return (
     <AnimatePresence>
-      <Routes location={location} key={location.pathname}>
+      <Routes>
         <Route path="/" element={<WeatherPage />} />
         <Route path="/favorites" element={<FavoritesPage />} />
       </Routes>
-    </AnimatePresence>
+    </AnimatePresence> 
   );
 };
 

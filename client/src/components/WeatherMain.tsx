@@ -81,14 +81,14 @@ const WeatherMain = () => {
     handlecheckIfFav();
   }, [locationGlobal]);
 
-  // useEffect(() => {
-  //   getWeatherDefault();
-  // }, []);
-
   useEffect(() => {
-    dispatch(setWeather(fakeResTelAvivInfo[0]));
-    dispatch(setLocationSelector(fakeTelAviv));
+    getWeatherDefault();
   }, []);
+
+  // useEffect(() => {
+  //   dispatch(setWeather(fakeResTelAvivInfo[0]));
+  //   dispatch(setLocationSelector(fakeTelAviv));
+  // }, []);
 
   return (
     <Container>
@@ -129,41 +129,10 @@ const WeatherMain = () => {
                 <Player autoplay loop src={weatherIcons[1].icon}></Player>
               </Box>
             </Stack>
-            {/* <Stack direction={"row"} justifyContent={"space-between"}>
-              <Stack direction={"row"}>
-                <Box>
-                  <Player
-                    style={{ width: "100px" }}
-                    autoplay
-                    src={weatherIcons[1].icon}
-                  ></Player>
-                </Box>
-                <Box>
-                  <Typography>{locationGlobal.LocalizedName}</Typography>
-                  {unit === "C" ? (
-                    <Typography>
-                      {weather.Temperature.Metric.Value}{" "}
-                      {weather.Temperature.Metric.Unit}
-                    </Typography>
-                  ) : (
-                    <Typography>
-                      {weather.Temperature.Imperial.Value}{" "}
-                      {weather.Temperature.Imperial.Unit}
-                    </Typography>
-                  )}
-                </Box>
-              </Stack>
-              <Box onClick={handleSetFav}>
-                {fav ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-              </Box>
-            </Stack> */}
-            {/* <Stack direction={"row"} justifyContent={"center"}>
-              <Typography variant="h2">{weather.WeatherText}</Typography>
-            </Stack> */}
           </>
         ) : (
           <Box>
-            <Typography>No weather</Typography>
+            <Typography>No Weather yet</Typography>
           </Box>
         )}
       </Paper>

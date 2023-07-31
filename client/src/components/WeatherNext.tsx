@@ -39,12 +39,12 @@ const WeatherNext = () => {
   };
 
   useEffect(() => {
-    if (unit === "C") {
-      setNextFiveDays(fakeResTelAvivInfoFiveMetric.DailyForecasts);
-    } else {
-      setNextFiveDays(fakeResTelAvivInfoFiveImpirial.DailyForecasts);
-    }
-    // handleGetNextForecast()
+    // if (unit === "C") {
+    //   setNextFiveDays(fakeResTelAvivInfoFiveMetric.DailyForecasts);
+    // } else {
+    //   setNextFiveDays(fakeResTelAvivInfoFiveImpirial.DailyForecasts);
+    // }
+    handleGetNextForecast()
   }, [location, unit]);
   return (
     <Container>

@@ -1,5 +1,5 @@
 import "./App.scss";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
 import { setUnitFromPrefernce } from "./features/unit/unitSlice";
 import { useEffect } from "react";
@@ -9,6 +9,8 @@ import { modeSelector, setModeFromPrefernce } from "./features/mode/modeSlice";
 import { setViewport } from "./features/viewport/viewportSlice";
 import AnimatedRoutes from "./components/AnimatedRoutes";
 import Header from "./components/Header";
+import WeatherPage from "./views/WeatherPage";
+import FavoritesPage from "./views/FavoritesPage";
 
 export const API = "http://dataservice.accuweather.com";
 export const API_KEY = "3vMphpay81AU2hjh6QZXGlketl9M62WJ";
@@ -44,7 +46,11 @@ function App() {
 
       <BrowserRouter>
         <Header />
-        <AnimatedRoutes />
+        {/* <Routes>
+        <Route path="/" element={<WeatherPage />} />
+        <Route path="/favorites" element={<FavoritesPage />} /> */}
+      {/* </Routes> */}
+      <AnimatedRoutes/>
       </BrowserRouter>
     </ThemeProvider>
   );

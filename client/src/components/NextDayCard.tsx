@@ -79,7 +79,7 @@ const NextDayCard = ({ dayIdx, day }: any) => {
           ></Player>
         </Box>
 
-        <Typography variant="h5">{day.Day.IconPhrase}</Typography>
+        <Typography>{day.Day.IconPhrase}</Typography>
         {!view ? (
           <Typography>
             Average: {calculateAvreageTemp()} {day.Temperature.Minimum.Unit}°{" "}

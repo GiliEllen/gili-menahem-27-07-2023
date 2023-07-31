@@ -54,14 +54,12 @@ const FavoritesPage = () => {
   };
 
   useEffect(() => {
-    // console.log(Object.keys(sessionStorage));
-    // handleGetWeatherForFav()
-    setFavWeatherInfo(fakeFavRes);
+    handleGetWeatherForFav()
+    // setFavWeatherInfo(fakeFavRes);
   }, []);
   
   return (
     <motion.div
-      intial={{ opacity: 0 }}
       variants={fadeIn("right", "spring", 0, 1)}
       initial="hidden"
       animate="visible"

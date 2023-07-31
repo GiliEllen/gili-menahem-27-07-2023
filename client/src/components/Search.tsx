@@ -50,15 +50,15 @@ const Search = () => {
     dispatch(setWeather(fakeResTelAvivInfo[0]));
   }, []);
 
-  // useEffect(() => {
-  //   search();
-  // }, [location]);
+  useEffect(() => {
+    search();
+  }, [location]);
 
-  // useEffect(() => {
-  //   if(locationGlobal && locationGlobal.value){
-  //     searchWeather(locationGlobal.value.Key);
-  //   }
-  // }, [locationGlobal]);
+  useEffect(() => {
+    if(locationGlobal && locationGlobal.value){
+      searchWeather(locationGlobal.value.Key);
+    }
+  }, [locationGlobal]);
 
   return (
     <Paper sx={{ padding: 2 }}>
