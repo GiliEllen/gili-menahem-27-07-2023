@@ -3,10 +3,6 @@ import axios from "axios";
 import { API } from "../App";
 import { useAppSelector } from "../app/hooks";
 import { locationSelector } from "../features/location/locationSlice";
-import {
-  fakeResTelAvivInfoFiveImpirial,
-  fakeResTelAvivInfoFiveMetric,
-} from "../util/fakeResponse";
 import { Container, Typography } from "@mui/material";
 import NextDayCard from "./NextDayCard";
 import { Stack } from "@mui/material";

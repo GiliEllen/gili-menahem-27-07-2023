@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Autocomplete, Box, Paper, TextField } from "@mui/material";
-import { fakeResTelAvivInfo } from "../util/fakeResponse";
 import axios from "axios";
 import { API } from "../App";
 import { useAppDispatch, useAppSelector } from "../app/hooks";

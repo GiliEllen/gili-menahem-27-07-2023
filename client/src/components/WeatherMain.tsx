@@ -22,7 +22,6 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { API, API_KEY } from "../App";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
-import { fakeResTelAvivInfo, fakeTelAviv } from "../util/fakeResponse";
 import CustomMuiToast from "./CustomMuiToast";
 
 const WeatherMain = () => {

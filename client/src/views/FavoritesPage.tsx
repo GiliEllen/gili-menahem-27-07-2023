@@ -2,7 +2,6 @@ import { Alert, Container, Snackbar, Stack, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { API } from "../App";
-import { fakeFavRes } from "../util/fakeResponse";
 import CityCard from "../components/CityCard";
 import { useAppSelector } from "../app/hooks";
 import { viewPortSelector } from "../features/viewport/viewportSlice";
