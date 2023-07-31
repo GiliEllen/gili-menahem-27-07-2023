@@ -1163,3 +1163,66 @@ export const fakeFavRes = [
     },
   },
 ];
+
+export const fakeGeoLocation = {
+  Version: 1,
+  Key: "212476",
+  Type: "City",
+  Rank: 45,
+  LocalizedName: "Rishon LeZiyyon",
+  EnglishName: "Rishon LeZiyyon",
+  PrimaryPostalCode: "",
+  Region: {
+    ID: "MEA",
+    LocalizedName: "Middle East",
+    EnglishName: "Middle East",
+  },
+  Country: {
+    ID: "IL",
+    LocalizedName: "Israel",
+    EnglishName: "Israel",
+  },
+  AdministrativeArea: {
+    ID: "M",
+    LocalizedName: "Central District",
+    EnglishName: "Central District",
+    Level: 1,
+    LocalizedType: "District",
+    EnglishType: "District",
+    CountryID: "IL",
+  },
+  TimeZone: {
+    Code: "IDT",
+    Name: "Asia/Jerusalem",
+    GmtOffset: 3,
+    IsDaylightSaving: true,
+    NextOffsetChange: "2023-10-28T23:00:00Z",
+  },
+  GeoPosition: {
+    Latitude: 31.965,
+    Longitude: 34.806,
+    Elevation: {
+      Metric: {
+        Value: 78,
+        Unit: "m",
+        UnitType: 5,
+      },
+      Imperial: {
+        Value: 255,
+        Unit: "ft",
+        UnitType: 0,
+      },
+    },
+  },
+  IsAlias: false,
+  SupplementalAdminAreas: [],
+  DataSets: [
+    "AirQualityCurrentConditions",
+    "AirQualityForecasts",
+    "Alerts",
+    "DailyPollenForecast",
+    "ForecastConfidence",
+    "FutureRadar",
+    "MinuteCast",
+  ],
+};

@@ -38,7 +38,7 @@ const WeatherNext = () => {
       }
     } catch (error:any) {
       setErrorDis(true)
-      setErrorCon(`${error.response.data.Code} ${error.response.data.Message}`)
+      setErrorCon(`${error.message}`)
       setTimeout(() => {
         setErrorCon("")
         setErrorDis(false)
@@ -47,12 +47,7 @@ const WeatherNext = () => {
   };
 
   useEffect(() => {
-    if (unit === "C") {
-      setNextFiveDays(fakeResTelAvivInfoFiveMetric.DailyForecasts);
-    } else {
-      setNextFiveDays(fakeResTelAvivInfoFiveImpirial.DailyForecasts);
-    }
-    // handleGetNextForecast()
+    handleGetNextForecast()
   }, [location, unit]);
   return (
     <Container>

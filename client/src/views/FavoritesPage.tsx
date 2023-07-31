@@ -34,8 +34,6 @@ const FavoritesPage = () => {
       }
     });
 
-    console.log(finalArr);
-
     let promiseArray = finalArr.map((element) =>
       axios.get(
         `${API}/currentconditions/v1/${element.key}?apikey=%093vMphpay81AU2hjh6QZXGlketl9M62WJ`
@@ -64,8 +62,7 @@ const FavoritesPage = () => {
   };
 
   useEffect(() => {
-    // handleGetWeatherForFav();
-    setFavWeatherInfo(fakeFavRes);
+    handleGetWeatherForFav();
   }, []);
 
   return (

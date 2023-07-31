@@ -1,7 +1,15 @@
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { setWeather, weatherSelector } from "../features/weather/weatherSlice";
-import { Alert, Box, Container, Paper, Snackbar, Stack, Typography } from "@mui/material";
+import {
+  Alert,
+  Box,
+  Container,
+  Paper,
+  Snackbar,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { Player } from "@lottiefiles/react-lottie-player";
 import {
   locationSelector,
@@ -11,7 +19,7 @@ import { weatherIcons } from "../Types/types";
 import { unitSelector } from "../features/unit/unitSlice";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { API } from "../App";
+import { API, API_KEY } from "../App";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import { fakeResTelAvivInfo, fakeTelAviv } from "../util/fakeResponse";
@@ -22,6 +30,8 @@ const WeatherMain = () => {
   const [fav, setFav] = useState<boolean>(false);
   const [errorDis, setErrorDis] = useState<boolean>(false);
   const [errorCon, setErrorCon] = useState<string>("");
+  const [geoLocation, setGeoLocation] = useState<boolean>();
+  const [fullGeoLocation, setFullGeoLocation] = useState<any>();
 
   const weather = useAppSelector(weatherSelector);
   const locationGlobal = useAppSelector(locationSelector);
@@ -54,16 +64,16 @@ const WeatherMain = () => {
     try {
       if (location && location.state && location.state.cityKey) {
         const { data } = await axios.get(
-          `${API}/currentconditions/v1/${location.state.cityKey}?apikey=%093vMphpay81AU2hjh6QZXGlketl9M62WJ`
+          `${API}/currentconditions/v1/${location.state.cityKey}?apikey=${API_KEY}`
         );
 
         dispatch(setWeather(data[0]));
         const response = await axios.get(
-          `${API}/locations/v1/cities/autocomplete?apikey=%093vMphpay81AU2hjh6QZXGlketl9M62WJ&q=${location.state.cityName}&language=en-us`
+          `${API}/locations/v1/cities/autocomplete?apikey=${API_KEY}=${location.state.cityName}&language=en-us`
         );
         dispatch(setLocationSelector(response.data[0]));
       } else {
-        //default is telAviv
+        // default is telAviv
         const { data } = await axios.get(
           `${API}/currentconditions/v1/215854?apikey=%093vMphpay81AU2hjh6QZXGlketl9M62WJ`
         );
@@ -74,27 +84,57 @@ const WeatherMain = () => {
         );
         dispatch(setLocationSelector(response.data[0]));
       }
-    } catch (error:any) {
-      setErrorDis(true)
-      setErrorCon(`${error.response.data.Code} ${error.response.data.Message}`)
+        //default via location
+      //   const { data } = await axios.get(
+      //     `${API}/locations/v1/cities/geoposition/search?${API_KEY}&q=${fullGeoLocation.coords.latitude},${fullGeoLocation.coords.longitude}`
+      //   );
+      //   dispatch(setWeather(data));
+
+      //   const response = await axios.get(
+      //     `${API}/locations/v1/cities/autocomplete?apikey=%093vMphpay81AU2hjh6QZXGlketl9M62WJ&q=${data.LocalizedName}&language=en-us`
+      //   );
+      //   dispatch(setLocationSelector(response.data[0]));
+      // }
+    }
+     catch (error: any) {
+      setErrorDis(true);
+      setErrorCon(`${error.message}}`);
       setTimeout(() => {
-        setErrorCon("")
-        setErrorDis(false)
-      }, 3000)
+        setErrorCon("");
+        setErrorDis(false);
+      }, 3000);
     }
   };
 
-  // useEffect(() => {
-  //   handlecheckIfFav();
-  // }, [locationGlobal]);
-
   useEffect(() => {
-    // getWeatherDefault();
+    setGeoLocation("geolocation" in navigator);
   }, []);
 
+  // useEffect(() => {
+  //   if (geoLocation) {
+  //     navigator.geolocation.getCurrentPosition(
+  //       (data) => {
+  //         setFullGeoLocation(data);
+  //       },
+  //       (error) => {
+  //         setErrorDis(true);
+  //         setErrorCon(`Somthing Went Wrong. Please try again`);
+  //         setTimeout(() => {
+  //           setErrorCon("");
+  //           setErrorDis(false);
+  //         }, 3000);
+  //       }
+  //     );
+  //     getWeatherDefault();
+  //   }
+  // }, [geoLocation]);
+
   useEffect(() => {
-    dispatch(setWeather(fakeResTelAvivInfo[0]));
-    dispatch(setLocationSelector(fakeTelAviv));
+    handlecheckIfFav();
+  }, [locationGlobal]);
+
+  useEffect(() => {
+    getWeatherDefault();
   }, []);
 
   return (
@@ -145,7 +185,7 @@ const WeatherMain = () => {
           )}
         </Paper>
       </Container>
-      <CustomMuiToast errorDis={errorDis} errorCon={errorCon}/>
+      <CustomMuiToast errorDis={errorDis} errorCon={errorCon} />
     </>
   );
 };

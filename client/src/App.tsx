@@ -9,11 +9,10 @@ import { modeSelector, setModeFromPrefernce } from "./features/mode/modeSlice";
 import { setViewport } from "./features/viewport/viewportSlice";
 import AnimatedRoutes from "./components/AnimatedRoutes";
 import Header from "./components/Header";
-import WeatherPage from "./views/WeatherPage";
-import FavoritesPage from "./views/FavoritesPage";
 
 export const API = "http://dataservice.accuweather.com";
 export const API_KEY = "3vMphpay81AU2hjh6QZXGlketl9M62WJ";
+// export const API_KEY = "AC3b5RkzLdGpmtWKHdzauR4fO0Bx1D60";
 
 function App() {
   const mode = useAppSelector(modeSelector);
@@ -43,13 +42,8 @@ function App() {
   return (
     <ThemeProvider theme={mode === "light" ? lightTheme : darkTheme}>
       <CssBaseline />
-
       <BrowserRouter>
         <Header />
-        {/* <Routes>
-        <Route path="/" element={<WeatherPage />} />
-        <Route path="/favorites" element={<FavoritesPage />} /> */}
-      {/* </Routes> */}
       <AnimatedRoutes/>
       </BrowserRouter>
     </ThemeProvider>

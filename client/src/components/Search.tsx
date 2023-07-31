@@ -59,13 +59,9 @@ const Search = () => {
     }
   };
 
-  // useEffect(() => {
-  //   dispatch(setWeather(fakeResTelAvivInfo[0]));
-  // }, []);
-
-  // useEffect(() => {
-  //   search();
-  // }, [location]);
+  useEffect(() => {
+    search();
+  }, [location]);
 
   useEffect(() => {
     if(locationGlobal && locationGlobal.value){
