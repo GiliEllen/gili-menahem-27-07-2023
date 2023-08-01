@@ -66,34 +66,26 @@ const WeatherMain = () => {
         const { data } = await axios.get(
           `${API}/currentconditions/v1/${location.state.cityKey}?apikey=${API_KEY}`
         );
+        console.log(data)
 
         dispatch(setWeather(data[0]));
         const response = await axios.get(
-          `${API}/locations/v1/cities/autocomplete?apikey=${API_KEY}=${location.state.cityName}&language=en-us`
+          `${API}/locations/v1/cities/autocomplete?apikey=${API_KEY}&q=${location.state.cityName}&language=en-us`
         );
         dispatch(setLocationSelector(response.data[0]));
+        console.log(response)
       } else {
         // default is telAviv
-        // const { data } = await axios.get(
-        //   `${API}/currentconditions/v1/215854?apikey=%093vMphpay81AU2hjh6QZXGlketl9M62WJ`
-        // );
-        // dispatch(setWeather(data[0]));
-
-        // const response = await axios.get(
-        //   `${API}/locations/v1/cities/autocomplete?apikey=%093vMphpay81AU2hjh6QZXGlketl9M62WJ&q=tel&language=en-us`
-        // );
-        // dispatch(setLocationSelector(response.data[0]));
-      // }
-      // default via location
         const { data } = await axios.get(
-          `${API}/locations/v1/cities/geoposition/search?${API_KEY}&q=${fullGeoLocation.coords.latitude},${fullGeoLocation.coords.longitude}`
+          `${API}/currentconditions/v1/215854?apikey=%093vMphpay81AU2hjh6QZXGlketl9M62WJ`
         );
-        dispatch(setWeather(data));
+        dispatch(setWeather(data[0]));
 
         const response = await axios.get(
-          `${API}/locations/v1/cities/autocomplete?apikey=%093vMphpay81AU2hjh6QZXGlketl9M62WJ&q=${data.LocalizedName}&language=en-us`
+          `${API}/locations/v1/cities/autocomplete?apikey=%093vMphpay81AU2hjh6QZXGlketl9M62WJ&q=tel&language=en-us`
         );
         dispatch(setLocationSelector(response.data[0]));
+
       }
     } catch (error: any) {
       setErrorDis(true);
@@ -104,61 +96,6 @@ const WeatherMain = () => {
       }, 3000);
     }
   };
-
-  useEffect(() => {
-    // setGeoLocation("geolocation" in navigator);
-    function handleLocationClick() {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(success, error);
-      } else {
-        console.log("Geolocation not supported");
-      }
-    }
-  }, []);
-
-  async function success(position: any) {
-    const latitude = position.coords.latitude;
-    const longitude = position.coords.longitude;
-    setFullGeoLocation({ latitude, longitude });
-
-    const { data } = await axios.get(
-      `${API}/locations/v1/cities/geoposition/search?${API_KEY}&q=${fullGeoLocation.latitude},${fullGeoLocation.longitude}`
-    );
-    dispatch(setWeather(data));
-
-    const response = await axios.get(
-      `${API}/locations/v1/cities/autocomplete?apikey=%093vMphpay81AU2hjh6QZXGlketl9M62WJ&q=${data.LocalizedName}&language=en-us`
-    );
-    dispatch(setLocationSelector(response.data[0]));
-  }
-
-  function error(error: any) {
-    setErrorDis(true);
-    setErrorCon(`${error.message}}`);
-    setTimeout(() => {
-      setErrorCon("");
-      setErrorDis(false);
-    }, 3000);
-  }
-
-  // useEffect(() => {
-  //   if (geoLocation) {
-  //     navigator.geolocation.getCurrentPosition(
-  //       (data) => {
-  //         setFullGeoLocation(data);
-  //       },
-  //       (error) => {
-  //         setErrorDis(true);
-  //         setErrorCon(`Somthing Went Wrong. Please try again`);
-  //         setTimeout(() => {
-  //           setErrorCon("");
-  //           setErrorDis(false);
-  //         }, 3000);
-  //       }
-  //     );
-  //     getWeatherDefault();
-  //   }
-  // }, [geoLocation]);
 
   useEffect(() => {
     handlecheckIfFav();
