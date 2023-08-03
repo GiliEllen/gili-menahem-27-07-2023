@@ -10,7 +10,7 @@ import { setViewport } from "./features/viewport/viewportSlice";
 import AnimatedRoutes from "./components/AnimatedRoutes";
 import Header from "./components/Header";
 
-export const API = "http://dataservice.accuweather.com";
+export const API = "https://dataservice.accuweather.com";
 export const API_KEY = "3vMphpay81AU2hjh6QZXGlketl9M62WJ";
 // export const API_KEY = "AC3b5RkzLdGpmtWKHdzauR4fO0Bx1D60";
 
