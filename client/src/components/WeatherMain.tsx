@@ -59,35 +59,92 @@ const WeatherMain = () => {
     }
   };
 
+  // const getWeatherDefault = async () => {
+  //   try {
+  //     if (location && location.state && location.state.cityKey) {
+  //       const { data } = await axios.get(
+  //         `${API}/currentconditions/v1/${location.state.cityKey}?apikey=${API_KEY}`
+  //       );
+  //       console.log(data)
+
+  //       dispatch(setWeather(data[0]));
+  //       const response = await axios.get(
+  //         `${API}/locations/v1/cities/autocomplete?apikey=${API_KEY}&q=${location.state.cityName}&language=en-us`
+  //       );
+  //       dispatch(setLocationSelector(response.data[0]));
+  //       console.log(response)
+  //     } else {
+  //       // default is telAviv
+  //       const { data } = await axios.get(
+  //         `${API}/currentconditions/v1/215854?apikey=%093vMphpay81AU2hjh6QZXGlketl9M62WJ`
+  //       );
+  //       dispatch(setWeather(data[0]));
+
+  //       const response = await axios.get(
+  //         `${API}/locations/v1/cities/autocomplete?apikey=%093vMphpay81AU2hjh6QZXGlketl9M62WJ&q=tel&language=en-us`
+  //       );
+  //       dispatch(setLocationSelector(response.data[0]));
+
+  //     }
+  //   } catch (error: any) {
+  //     setErrorDis(true);
+  //     setErrorCon(`${error.message}}`);
+  //     setTimeout(() => {
+  //       setErrorCon("");
+  //       setErrorDis(false);
+  //     }, 3000);
+  //   }
+  // };
+
   const getWeatherDefault = async () => {
     try {
-      console.log(location)
       if (location && location.state && location.state.cityKey) {
         const { data } = await axios.get(
-          `${API}/currentconditions/v1/${location.state.cityKey}?apikey=${API_KEY}`
+          `${API}/currentconditions/v1/${location.state.cityKey}?apikey=%093vMphpay81AU2hjh6QZXGlketl9M62WJ`
         );
-        console.log(data)
+        console.log(data);
 
         dispatch(setWeather(data[0]));
         const response = await axios.get(
-          `${API}/locations/v1/cities/autocomplete?apikey=${API_KEY}&q=${location.state.cityName}&language=en-us`
+          `${API}/locations/v1/cities/autocomplete?apikey=%093vMphpay81AU2hjh6QZXGlketl9M62WJ&q=${location.state.cityName}&language=en-us`
         );
         dispatch(setLocationSelector(response.data[0]));
-        console.log(response)
       } else {
-        // default is telAviv
+        
+        if ("geolocation" in navigator) {
+          /* geolocation is available */
+          navigator.geolocation.getCurrentPosition( async (position) => {
+            console.log(position.coords.latitude, position.coords.longitude);
+            const {data} = await axios.get(`${API}/locations/v1/cities/geoposition/search?apikey=3vMphpay81AU2hjh6QZXGlketl9M62WJ&q=${position.coords.latitude},${position.coords.longitude}`);
+            if (data) {
+              const response = await axios.get(
+                `${API}/currentconditions/v1/${data.Key}?apikey=%093vMphpay81AU2hjh6QZXGlketl9M62WJ`
+              );
+              console.log(response);
+      
+              dispatch(setWeather(response.data[0]));
+              const response2 = await axios.get(
+                `${API}/locations/v1/cities/autocomplete?apikey=%093vMphpay81AU2hjh6QZXGlketl9M62WJ&q=${data.LocalizedName}&language=en-us`
+              );
+              dispatch(setLocationSelector(response2.data[0]));
+            }
+          });
+        } else {
+          //default is telAviv
         const { data } = await axios.get(
           `${API}/currentconditions/v1/215854?apikey=%093vMphpay81AU2hjh6QZXGlketl9M62WJ`
         );
+        console.log(data);
         dispatch(setWeather(data[0]));
 
         const response = await axios.get(
           `${API}/locations/v1/cities/autocomplete?apikey=%093vMphpay81AU2hjh6QZXGlketl9M62WJ&q=tel&language=en-us`
         );
         dispatch(setLocationSelector(response.data[0]));
-
+        }
       }
-    } catch (error: any) {
+    } catch (error:any) {
+      console.error(error);
       setErrorDis(true);
       setErrorCon(`${error.message}}`);
       setTimeout(() => {
@@ -96,6 +153,7 @@ const WeatherMain = () => {
       }, 3000);
     }
   };
+
 
   useEffect(() => {
     handlecheckIfFav();
